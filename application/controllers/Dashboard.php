@@ -7,45 +7,42 @@ class Dashboard extends CI_Controller
 	public function __construct()
 	{
 		parent::__construct();
-		$this->load->model('belajar_model');
+		// LIST MODEL
+		$this->load->model('master_model');
+
+		// LIST LIBRARY
 		$this->load->library('form_validation');
-		$this->load->helper('url_helper');
 		$this->load->library('session');
+
+		// LIST HELPER
+		$this->load->helper('url_helper');
+
+		// DATABSE INIT
 		$this->load->database();
 	}
 	// email
-	public function email()
+	public function nomor_induk()
 	{
-		return $this->session->userdata('email');
+		return $this->session->userdata('nomor_induk');
 	}
 	// USER
 	public function user()
 	{
-		return $this->db->get_where('user', ['email' => $this->email()])->row_array();
+		return $this->db->get_where('user', ['nomor_induk' => $this->nomor_induk()])->row_array();
 	}
 
 	// CHECK user
 	public function check_user()
 	{
-		if (empty($this->email())) {
+		if (empty($this->nomor_induk())) {
 			$this->session->set_flashdata(
 				'message',
 				'<div class="alert alert-danger" role="alert">
-				Oupps, you\'re not Login!
+				Oupps, Kamu belum Login!
 				</div>'
 			);
 			redirect('auth');
 		}
-	}
-
-	// View Template
-	public function view_template($content, $data)
-	{
-		$this->load->view('templates/dashboard_header', $data);
-		$this->load->view('templates/dashboard_sidebar', $data);
-		$this->load->view('templates/dashboard_topbar', $data);
-		$this->load->view($content, $data);
-		$this->load->view('templates/dashboard_footer');
 	}
 
 	public function search_logic()
@@ -64,56 +61,14 @@ class Dashboard extends CI_Controller
 		}
 	}
 
-	public function post_content($menu)
-	{
-		if ($menu == 'menus') {
 
-			$this->form_validation->set_rules('id_menu', 'id_menu', 'required');
-			$this->form_validation->set_rules('title', 'title', 'required');
-			$this->form_validation->set_rules('slug', 'slug', 'required');
-			$this->form_validation->set_rules('info', 'info', 'required');
-
-			return array(
-				'id_menu' => $this->input->post('id_menu'),
-				'title' => $this->input->post('title'),
-				'slug' => $this->input->post('slug'),
-				'info' => $this->input->post('info')
-			);
-		} else if ($menu == 'materials') {
-
-			$this->form_validation->set_rules('id_menu', 'id_menu', 'required');
-			$this->form_validation->set_rules('id_material', 'id_material', 'required');
-			$this->form_validation->set_rules('title', 'title', 'required');
-			$this->form_validation->set_rules('slug', 'slug', 'required');
-			$this->form_validation->set_rules('sub_title', 'sub_title', 'required');
-			$this->form_validation->set_rules('content', 'content', 'required');
-
-			return array(
-				'id_menu' => $this->input->post('id_menu'),
-				'id_material' => $this->input->post('id_material'),
-				'title' => $this->input->post('title'),
-				'slug' => $this->input->post('slug'),
-				'sub_title' => $this->input->post('sub_title'),
-				'content' => $this->input->post('content')
-			);
-		} else if ($menu == 'admin') {
-
-			$this->form_validation->set_rules('role_id', 'role_id', 'required');
-			$this->form_validation->set_rules('is_active', 'is_active', 'required');
-
-			return array(
-				'role_id' => $this->input->post('role_id'),
-				'is_active' => $this->input->post('is_active'),
-			);
-		}
-	}
 
 	public function infoData($title)
 	{
 		return [
 			'title' => $title,
 			'selected_dash' => "active",
-			'user' => $this->user()
+			'user_login' => $this->user()
 		];
 	}
 
@@ -147,7 +102,7 @@ class Dashboard extends CI_Controller
 	public function index()
 	{
 		$this->check_user();
-		$data = $this->infoData('Dashboard Admin');
+		$data = $this->infoData('SISTEM INFORMASI AKADEMIK (SIMAK) PIKSI GANEHSA');
 
 		$this->view_template('admin/dashboard', $data);
 	}
@@ -210,142 +165,317 @@ class Dashboard extends CI_Controller
 		redirect('dashboard/admin_list');
 	}
 
-	public function menus()
+	// ===================================================
+	/*
+      DASHBOARD CONTROLLER IS A FLEXSIBLE DESIGN MODEL FOR
+      VIEW AND DATA FLOW, HOPE ALWAYS SIMPLE AND EVERY
+      FUCTION CODE IS RESUSABLE FIRST. THINK FIRST.
+    */
+	// ====================================================
+
+
+	// View Template every dashboard
+	public function view_template($content, $data)
 	{
-		$this->check_user();
-		$data = $this->infoData('Manage Menu di Ayoboga');
-		$keyword = $this->search_logic();
-		$id = false;
-
-		$data['menus'] = $this->belajar_model->get_data($id, 'menus', $keyword);
-
-		$this->view_template('admin/menus', $data);
+		$this->load->view('templates/dashboard_header', $data);
+		$this->load->view('templates/dashboard_sidebar', $data);
+		$this->load->view('templates/dashboard_topbar', $data);
+		$this->load->view($content, $data);
+		$this->load->view('templates/dashboard_footer');
 	}
 
 
-
-	public function set_menu()
+	// save content
+	public function post_content($table)
 	{
+		// Get all column name of table
+		$columns = $this->master_model->getListField($table);
 
+		// declarate null array
+		$arr = [];
+
+		// Loop every single column name
+		foreach ($columns as $column) {
+			// when column name id, email, image, pass, data_created, skip it.
+			if (
+				$column === 'id' ||
+				$column === 'email' ||
+				$column === 'image' ||
+				$column === 'password' ||
+				$column === 'date_created'
+			) {
+				continue;
+			}
+			// replace all underscore from column, it's for label in notiv
+			$label = ucfirst(str_replace('_', ' ', $column));
+
+			// Check Form Validation
+			$this->form_validation->set_rules($column, $label, 'required');
+
+			// push every single value to array variable
+			$arr += array($column => $this->input->post($column));
+		}
+
+		return $arr;
+	}
+
+
+	// Notif is notification for every CRUD Proses
+	public function notif($status, $label)
+	{
+		return $this->session->set_flashdata(
+			'message',
+			shell_exec("<div class=\"alert alert-\$status\" role=\"alert\">\n      Data \$label.\n    </div>")
+		);
+	}
+
+
+	// ===================== CRUDS ========================
+	/*
+       THIS CONTROLLER I WANT, IT'S FLEXIBLE FOR MANY VIEW
+       AND MODEL. KEEP SIMPLE, CLEAN AND BEAUTIFUL CODE,
+       HOPE EVERY PROGRAMMER HAS BEAUTIFUL SYTAX
+    */
+	// ====================================================
+
+
+	// READ
+	public function show($info)
+	{
+		// check user session
 		$this->check_user();
 
-		$data = $this->post_content('menus');
+		// ================================================
+		/*
+           because every data using table name in db, i want
+           used with every title menu & it's capital
+           first eg : p_hotel -> Piutang Hotel
 
-		if ($this->form_validation->run() === FALSE) {
-			redirect('dashboard/menus');
+           ================================================
+
+           url mean, change $info to spesific view in db
+           every url set to nameFolder/nameFile.php
+        */
+		// ================================================
+
+
+		// replace all underscore from column, it's for title
+		$title = ucfirst(str_replace('_', ' ', $info));
+
+		// null url variable for take folder & file
+
+		$url = $info . '/' . $info;
+
+		// take title for showing in view
+		$data = $this->infoData('Manage data ' . $title);
+
+		// is default for showing all data
+		$query = $this->master_model->get_data($info);
+
+
+		// ============= SEARCHING LOGIC =================
+		// get data from post keyword form in view for searching
+		$search = $this->input->post('keyword');
+
+		// Logic if Searching not null
+		if ($search != null) {
+			$query = $this->master_model->get_data($info, null, null, $search);
+		}
+		// =========== END OF SEARCING LOGIC =============
+
+
+		// ============= ORDER BY LOGIC ==================
+		// get data from post order_by form in view
+		$order_by = $this->input->post('order_by');
+		// Logic if order_by not null
+		if ($order_by != null && $order_by != 'Urutkan Berdasarkan') {
+			$query = $this->master_model->get_data($info, null, $order_by);
+		}
+		// ========= END OF ORDER BY LOGIC ===============
+
+
+		// ============== FILTER LOGIC ===================
+		// Get all field name
+		$columns = $this->master_model->getListField($info);
+
+		// Declarate filter variable null array
+		$filterData = [];
+		$filterColumn = "";
+
+		// Looping all field name
+		foreach ($columns as $column) {
+			// Put column to post data
+			$filterColumn = $this->input->post($column);
+
+			// If $filterColumn not null, add data!
+			if ($filterColumn != null) {
+				$filterData += array($column => $filterColumn);
+			}
+		}
+
+		if (!empty($filterData)) {
+			// query
+			$query = $this->master_model->get_data($info, null, null, null, $filterData);
+		}
+
+		// ========== END OF FILTER LOGIC ================
+
+		// get query
+		$data[$info] = $query;
+
+		// view
+		$this->view_template('dashboard/' . $url, $data);
+	}
+
+	// EDIT
+	public function show_one($id, $info)
+	{
+		// check user session
+		$this->check_user();
+
+		$title = ucfirst(str_replace('_', ' ', $info));
+
+		$url = $info . '/one_' . $info;
+
+		$data = $this->infoData("Data $title");
+
+		$data['item'] = $this->master_model->get_data($info, $id);
+
+		$this->view_template('dashboard/' . $url, $data);
+	}
+
+
+	// CREATE
+	public function create($info)
+	{
+		$this->check_user();
+
+		$data = $this->post_content($info);
+
+		$this->master_model->set_data($data, $info);
+		redirect('dashboard/show/' . $info);
+	}
+
+
+	// EDIT
+	public function edit($id, $info)
+	{
+		// check user session
+		$this->check_user();
+
+		$title = ucfirst(str_replace('_', ' ', $info));
+
+		$url = $info . '/edit_' . $info;
+
+		$data = $this->infoData("Edit Data $title");
+
+		$data['item'] = $this->master_model->get_data($info, $id);
+
+		$this->view_template('dashboard/' . $url, $data);
+	}
+
+
+	// UPDATE
+	public function update($info)
+	{
+		$this->check_user();
+
+		$data = $this->post_content($info);
+
+		$where = array('id' => $this->input->post('id'));
+		$this->master_model->update_data($where, $data, $info);
+
+		redirect('dashboard/show/' . $info);
+	}
+
+
+	// DESTROY
+
+	public function destroy($id, $info)
+	{
+		$this->check_user();
+
+		$this->master_model->destroy_data($id, $info);
+		redirect('dashboard/show/' . $info);
+	}
+
+	// REPORT
+	public function report($info)
+	{
+		// check user session
+		$this->check_user();
+
+
+		// ================================================
+		/*
+           because every data using table name in db, i want
+           used with every title menu & it's capital
+           first eg : p_hotel -> Piutang Hotel
+           ================================================
+           url mean, change $info to spesific view in db
+           every url set to nameFolder/nameFile.php
+        */
+		// ================================================
+
+		// replace all underscore from column, it's for title
+		$title = ucfirst(str_replace('_', ' ', $info));
+
+		// is default for showing all data
+		$query = $this->master_model->get_data($info);
+
+		if (strpos($info, 'p_') !== false) {
+			$title = str_replace('P', 'Piutang ', $title);
+		} elseif (strpos($info, 's_') !== false) {
+			$title = str_replace('S', 'Stok ', $title);
+		} elseif (strpos($info, 'bb') !== false) {
+			$title = str_replace('Bb', 'Begining Balance (BB) ', $title);
+		} elseif (strpos($info, 'hpp') !== false) {
+			$title = str_replace('Hpp', 'HPP', $title);
+		}
+
+		// take title for showing in view
+		$data = $this->infoData('Laporan ' . $title);
+
+		// ============== FILTER LOGIC ===================
+		// Get all field name
+		$columns = $this->master_model->getListField($info);
+
+		// Declarate filter variable null array
+		$filterData = [];
+		$filterColumn = "";
+
+		// Looping all field name
+		foreach ($columns as $column) {
+			// Put column to post data
+			$filterColumn = $this->input->post($column);
+
+			// If $filterColumn not null, add data!
+			if ($filterColumn != null) {
+				$filterData += array($column => $filterColumn);
+			}
+		}
+
+		if (!empty($filterData)) {
+			// query
+			$query = $this->master_model->get_data($info, null, null, null, $filterData);
+		}
+
+		// ========== END OF FILTER LOGIC ================
+
+
+		// get query
+		$data[$info] = $query;
+
+		if ($info == 'laba_rugi' || $info == 'laporan_is' || $info == 'laporan_Rin_RL' || $info ==  'laporan_Rin_Ner') {
+			$this->load->view('dashboard/report/' . $info, $data);
 		} else {
-			$this->belajar_model->set_data($data, 'menus');
-			$this->notif_simpan();
-			redirect('dashboard/menus');
+			// view
+			$this->load->view('dashboard/report/header', $data);
+			$this->load->view('dashboard/report/' . $info, $data);
+			$this->load->view('dashboard/report/footer');
 		}
 	}
 
-	public function destroy_menu($id)
-	{
-		$this->check_user();
+	// ======================================================
 
-		$this->belajar_model->destroy_data($id, 'menus');
-		$this->notif_Hapus();
-		redirect('dashboard/menus');
-	}
-
-	// view per menu
-	public function edit_menu($id)
-	{
-		$this->check_user();
-		$data = $this->infoData("Edit Data Menu");
-
-		$data['item'] = $this->belajar_model->get_data($id, 'menus');
-
-
-		$this->view_template('admin/edit_menu', $data);
-	}
-
-	public function update_menu()
-	{
-		$this->check_user();
-
-		$data = $this->post_content('menus');
-
-		if ($this->form_validation->run() === FALSE) {
-			redirect('dashboard/menus');
-		} else {
-			$where = array('id' => $this->input->post('id'));
-			$this->belajar_model->update_data($where, $data, 'menus');
-			$this->notif_update();
-			redirect('dashboard/menus');
-		}
-	}
-
-
-	public function materials()
-	{
-
-		$this->check_user();
-		$data = $this->infoData("Manage Material Ayoboga");
-
-		$keyword = $this->search_logic();
-
-
-		$id = false;
-
-		$data['materials'] = $this->belajar_model->get_data($id, 'materials', $keyword);
-
-		$this->view_template('admin/materials', $data);
-	}
-
-	public function set_material()
-	{
-		$this->check_user();
-
-		$data = $this->post_content('materials');
-
-
-		if ($this->form_validation->run() === FALSE) {
-			redirect('dashboard/materials');
-		} else {
-			$this->belajar_model->set_data($data, 'materials');
-			$this->notif_simpan();
-			redirect('dashboard/materials');
-		}
-	}
-
-	public function destroy_material($id)
-	{
-		$this->check_user();
-
-		$this->belajar_model->destroy_data($id, 'materials');
-		$this->notif_Hapus();
-		redirect('dashboard/materials');
-	}
-
-	// view per menu
-	public function edit_material($id)
-	{
-		$this->check_user();
-		$data = $this->infoData("Edit Material");
-
-		$data['item'] = $this->belajar_model->get_data($id, 'materials');
-
-
-		$this->view_template('admin/edit_material', $data);
-	}
-
-	public function update_material()
-	{
-		$this->check_user();
-
-		$this->form_validation->set_rules('id_material', 'id_material', 'required');
-
-		if ($this->form_validation->run() === FALSE) {
-			redirect('dashboard/materials');
-		} else {
-			$data = $this->post_content('materials');
-			$where = array('id' => $this->input->post('id'));
-
-			$this->belajar_model->update_data($where, $data, 'materials');
-			$this->notif_update();
-			redirect('dashboard/materials');
-		}
-	}
 }

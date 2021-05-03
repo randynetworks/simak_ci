@@ -17,7 +17,7 @@
 
 	<!-- Custom styles for this template-->
 	<link href="<?= base_url('assets/') ?>css/sb-admin-2.min.css" rel="stylesheet">
-	<link rel="icon" href="<?= base_url('assets/'); ?>img/ay.png">
+	<link rel="icon" href="<?= base_url('assets/') ?>img/PIKSI.png">
 
 	<style>
 		.my-custom-scrollbar {
@@ -28,6 +28,19 @@
 
 		.table-wrapper-scroll-y {
 			display: block;
+		}
+
+		 .bg-gradient-purple{
+			 background: rgb(121,2,189);
+			 background: linear-gradient(77deg, rgba(121,2,189,1) 0%, rgba(201,0,255,1) 0%, rgba(177,0,224,1) 0%, rgba(201,0,255,1) 100%);
+		 }
+
+		.text-purple {
+			color: #974edf !important;
+		}
+
+		a.text-purple:hover, a.text-purple:focus {
+			color: #8222be !important;
 		}
 	</style>
 </head>

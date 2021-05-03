@@ -19,6 +19,6 @@ $route['dashboard/edit_material/(:any)'] = 'dashboard/edit_material/$1';
 $route['dashboard/update_material'] = 'dashboard/update_material';
 
 
-$route['default_controller'] = 'dashboard';
+$route['default_controller'] = 'auth';
 $route['404_override'] = '';
 $route['translate_uri_dashes'] = false;

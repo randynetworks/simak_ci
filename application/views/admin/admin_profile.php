@@ -8,14 +8,14 @@
         <div class="card shadow mb-3" style="max-width: 540px;">
             <div class="row no-gutters">
                 <div class="col-md-4">
-                    <img src="<?= base_url('assets/img/profile/') . $user['image']; ?>" class="p-3 card-img">
+                    <img src="<?= base_url('assets/img/profile/') . $user_login['image']; ?>" class="p-3 card-img">
                 </div>
                 <div class="col-md-8">
                     <div class="card-body">
                         <br>
-                        <h5 class="card-title"><?= $user['name']; ?></h5>
-                        <p class="card-text"><?= $user['email'] ?>.</p>
-                        <p class="card-text"><small class="text-muted">Admin since <?= date('d F Y', $user['date_created']) ?></small></p>
+                        <h5 class="card-title"><?= $user_login['name']; ?></h5>
+                        <p class="card-text"><?= $user_login['nomor_induk'] ?>.</p>
+                        <p class="card-text"><small class="text-muted">Admin since <?= date('d F Y', $user_login['date_created']) ?></small></p>
                     </div>
                 </div>
             </div>

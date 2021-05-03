@@ -1,12 +1,10 @@
 <!-- Sidebar -->
-<ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
+<ul class="navbar-nav bg-gradient-purple sidebar sidebar-dark accordion" id="accordionSidebar">
 
 	<!-- Sidebar - Brand -->
 	<a class="sidebar-brand d-flex align-items-center justify-content-center" href="<?= base_url('dashboard') ?>">
-		<div class="sidebar-brand-icon rotate-n-15">
-			<i class="fas fa-code"></i>
-		</div>
-		<div class="sidebar-brand-text mx-3">Ayoboga Dashboard</div>
+		<img src="<?= base_url('assets/img/PIKSI.png') ?>" alt="Logo Piksi" width="50px">
+		<div class="sidebar-brand-text mx-3">SIMAK PPG</div>
 	</a>
 
 	<!-- Divider -->
@@ -29,20 +27,20 @@
 
 	<!-- Heading -->
 	<div class="sidebar-heading">
-		Admin Management
+		Manajemen Admin
 	</div>
 	<!-- Nav Item - list admin account -->
 	<li class="nav-item">
-		<a class="nav-link" href="<?= base_url('dashboard/me'); ?>">
+		<a class="nav-link" href="<?= base_url('dashboard/me') ?>">
 			<i class="fas fa-fw fa-user"></i>
-			<span>Admin Profile</span></a>
+			<span>Profil Pengguna</span></a>
 	</li>
 
 	<!-- Nav Item - list admin account -->
 	<li class="nav-item">
-		<a class="nav-link" href="<?= base_url('dashboard/admin_list'); ?>">
+		<a class="nav-link" href="<?= base_url('dashboard/show/user') ?>">
 			<i class="fas fa-fw fa-users-cog"></i>
-			<span>List Admin Account</span></a>
+			<span>Daftar User</span></a>
 	</li>
 
 	<!-- Divider -->
@@ -61,7 +59,7 @@
 		</a>
 		<div id="collapsePages" class="collapse hide" aria-labelledby="headingPages" data-parent="#accordionSidebar">
 			<div class="bg-white py-2 collapse-inner rounded">
-
+				<a class="collapse-item" href="<?php echo base_url('dashboard/show/mahasiswa'); ?>">Daftar Mahasiswa</a>
 			</div>
 		</div>
 	</li>
