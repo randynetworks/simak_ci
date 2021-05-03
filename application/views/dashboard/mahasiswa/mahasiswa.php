@@ -117,3 +117,103 @@
 
 </div>
 <!-- End of Main Content -->
+
+
+
+<!-- Tambah data -->
+<div class="modal fade text-dark" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h5 class="modal-title" id="exampleModalLabel">Tambah Data Mahasiswa</h5>
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+				</button>
+			</div>
+			<div class="modal-body">
+				<?php echo form_open('dashboard/create/mahasiswa'); ?>
+					<div class="form-group">
+						<label for="inputAddress">Nomor Daftar</label>
+						<input type="text" class="form-control" id="inputAddress" value="<?= $this->master_model->getLastData('no_daftar', 'mahasiswa') + 1?>" disabled>
+					</div>
+					<div class="form-group">
+						<label for="nama">Nama Lengkap</label>
+						<input type="text" class="form-control" id="nama" placeholder="Masukan Nama Lengkap">
+					</div>
+					<div class="form-row">
+						<div class="form-group col-md-6">
+							<label for="tempatLahir">Tempat Lahir</label>
+							<input type="text" class="form-control" id="tempatLahir" placeholder="Tempat Lahir">
+						</div>
+						<div class="form-group col-md-6">
+							<label for="tempatLahir">Tanggal Lahir</label>
+							<input type="text" class="form-control" data-toggle="datepicker1" placeholder="Tanggal Lahir">
+						</div>
+					</div>
+					<div class="form-row">
+						<div class="form-group col-md-4">
+							<label for="inputAddress">Jenis Kelamin</label>
+							<select class="custom-select mr-sm-2" id="inlineFormCustomSelect">
+						<option selected>Pilih...</option>
+						<option value="LAKI LAKI">LAKI-LAKI</option>
+								<option value="PEREMPUAN">PEREMPUAN</option>
+							</select>
+						</div>
+						<div class="form-group col-md-4">
+							<label for="inputAddress">Agama</label>
+							<select class="custom-select mr-sm-2" id="inlineFormCustomSelect">
+								<option selected>Pilih...</option>
+								<option value="ISLAM">ISLAM</option>
+								<option value="PROTESTAN">PROTESTAN</option>
+								<option value="KATOLIK">KATOLIK</option>
+								<option value="HINDU">HINDU</option>
+								<option value="BUDDHA">BUDDHA</option>
+								<option value="KHONGHUCU">KHONGHUCU</option>
+							</select>
+						</div>
+						<div class="form-group col-md-4">
+							<label for="inputAddress">Golongan Darah</label>
+							<select class="custom-select mr-sm-2" id="inlineFormCustomSelect">
+								<option selected>Pilih...</option>
+								<option value="A">A</option>
+								<option value="B">B</option>
+								<option value="O">O</option>
+								<option value="AB">AB</option>
+							</select>
+						</div>
+					</div>
+					<div class="form-group">
+						<label for="inputAddress2">Address 2</label>
+						<input type="text" class="form-control" id="inputAddress2" placeholder="Apartment, studio, or floor">
+					</div>
+					<div class="form-row">
+						<div class="form-group col-md-6">
+							<label for="inputCity">City</label>
+							<input type="text" class="form-control" id="inputCity">
+						</div>
+						<div class="form-group col-md-4">
+							<label for="inputState">State</label>
+							<select id="inputState" class="form-control">
+								<option selected>Choose...</option>
+								<option>...</option>
+							</select>
+						</div>
+						<div class="form-group col-md-2">
+							<label for="inputZip">Zip</label>
+							<input type="text" class="form-control" id="inputZip">
+						</div>
+					</div>
+					<div class="form-group">
+						<div class="form-check">
+							<input class="form-check-input" type="checkbox" id="gridCheck">
+							<label class="form-check-label" for="gridCheck">
+								Check me out
+							</label>
+						</div>
+					</div>
+					<button type="submit" class="btn btn-primary">Sign in</button>
+				</form>
+			</div>
+		</div>
+	</div>
+</div>

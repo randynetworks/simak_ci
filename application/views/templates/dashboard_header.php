@@ -19,6 +19,13 @@
 	<link href="<?= base_url('assets/') ?>css/sb-admin-2.min.css" rel="stylesheet">
 	<link rel="icon" href="<?= base_url('assets/') ?>img/PIKSI.png">
 
+
+	<!-- JQUERY -->
+	<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+	<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+	<script src="https://unpkg.com/gijgo@1.9.13/js/gijgo.min.js" type="text/javascript"></script>
+	<link href="https://unpkg.com/gijgo@1.9.13/css/gijgo.min.css" rel="stylesheet" type="text/css" />
+
 	<style>
 		.my-custom-scrollbar {
 			position: relative;
@@ -31,8 +38,7 @@
 		}
 
 		 .bg-gradient-purple{
-			 background: rgb(121,2,189);
-			 background: linear-gradient(77deg, rgba(121,2,189,1) 0%, rgba(201,0,255,1) 0%, rgba(177,0,224,1) 0%, rgba(201,0,255,1) 100%);
+			 background: #9c27b0;
 		 }
 
 		.text-purple {

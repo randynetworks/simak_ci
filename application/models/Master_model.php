@@ -97,20 +97,16 @@ class Master_model extends CI_Model
 
 
 	// Get last data from table
-	public function getLastData($field, $tabel, $saldo = null)
+	public function getLastData($field, $tabel)
 	{
 		// SQL Logic
 		$this->db->select("*");
 		$this->db->from($tabel);
-		$this->db->order_by('id', 'DESC');
-		if ($saldo == 'saldo') {
-			// just get spesific field what where showing last before
-			return $this->db->get()->result_array()[1][$field];
-		} else {
-			$this->db->limit(1);
-			// just get spesific field what where showing
-			return $this->db->get()->result_array()[0][$field];
-		}
+		$this->db->order_by($tabel === 'mahasiswa' ? 'no_daftar' : 'id', 'DESC');
+
+		$this->db->limit(1);
+		// just get spesific field what where showing
+		return $this->db->get()->result_array()[0][$field];
 	}
 
 	// Get Spesific data

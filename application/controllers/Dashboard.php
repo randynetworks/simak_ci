@@ -209,8 +209,6 @@ class Dashboard extends CI_Controller
 			// replace all underscore from column, it's for label in notiv
 			$label = ucfirst(str_replace('_', ' ', $column));
 
-			// Check Form Validation
-			$this->form_validation->set_rules($column, $label, 'required');
 
 			// push every single value to array variable
 			$arr += array($column => $this->input->post($column));
@@ -288,7 +286,7 @@ class Dashboard extends CI_Controller
 		// get data from post order_by form in view
 		$order_by = $this->input->post('order_by');
 		// Logic if order_by not null
-		if ($order_by != null && $order_by != 'Urutkan Berdasarkan') {
+		if ($order_by !== null && $order_by !== 'Urutkan Berdasarkan') {
 			$query = $this->master_model->get_data($info, null, $order_by);
 		}
 		// ========= END OF ORDER BY LOGIC ===============
