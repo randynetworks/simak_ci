@@ -103,7 +103,6 @@ class Dashboard extends CI_Controller
 	{
 		$this->check_user();
 		$data = $this->infoData('SISTEM INFORMASI AKADEMIK (SIMAK) PIKSI GANEHSA');
-
 		$this->view_template('admin/dashboard', $data);
 	}
 
@@ -320,6 +319,13 @@ class Dashboard extends CI_Controller
 
 		// get query
 		$data[$info] = $query;
+		if ($info === 'mahasiswa') {
+			$ch = curl_init('https://api.first.org/data/v1/countries');
+			curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+			$result = curl_exec($ch);
+			curl_close($ch);
+			$data['countries'] = json_decode($result, true, 512, JSON_THROW_ON_ERROR)['data'];
+		}
 
 		// view
 		$this->view_template('dashboard/' . $url, $data);
@@ -475,5 +481,6 @@ class Dashboard extends CI_Controller
 	}
 
 	// ======================================================
+
 
 }
