@@ -143,32 +143,30 @@
 							</div>
 							<div class="form-group">
 								<label for="nama">Nama Lengkap</label>
-								<input type="text" class="form-control" id="nama" placeholder="Masukan Nama Lengkap">
+								<input name="nama_lengkap" type="text" class="form-control" id="nama" placeholder="Masukan Nama Lengkap">
 							</div>
 							<div class="form-row">
 								<div class="form-group col-md-6">
 									<label for="tempatLahir">Tempat Lahir</label>
-									<input type="text" class="form-control" id="tempatLahir" placeholder="Tempat Lahir">
+									<input name="tempat_lahir" type="text" class="form-control" id="tempatLahir" placeholder="Tempat Lahir">
 								</div>
 								<div class="form-group col-md-6">
-									<label for="tempatLahir">Tanggal Lahir</label>
-									<input type="text" class="form-control" data-toggle="datepicker1" placeholder="Tanggal Lahir">
+									<label for="tanggallahir">Tanggal Lahir</label>
+									<input name="tgl_lahir" type="text" class="form-control" data-toggle="datepicker1" placeholder="Tanggal Lahir">
 								</div>
 							</div>
 							<div class="form-row">
 								<div class="form-group col-md-4">
-									<label for="inputAddress">Jenis Kelamin</label>
-									<select class="custom-select mr-sm-2" id="inlineFormCustomSelect">
-										<option selected>Pilih...</option>
-										<option value="LAKI LAKI">LAKI-LAKI</option>
+									<label for="jk">Jenis Kelamin</label>
+									<select name="jenis_kelamin" class="custom-select mr-sm-2" id="jk">
+										<option selected value="LAKI LAKI">LAKI-LAKI</option>
 										<option value="PEREMPUAN">PEREMPUAN</option>
 									</select>
 								</div>
 								<div class="form-group col-md-4">
-									<label for="inputAddress">Agama</label>
-									<select class="custom-select mr-sm-2" id="inlineFormCustomSelect">
-										<option selected>Pilih...</option>
-										<option value="ISLAM">ISLAM</option>
+									<label for="agama">Agama</label>
+									<select name="agama" class="custom-select mr-sm-2" id="agama">
+										<option selected value="ISLAM">ISLAM</option>
 										<option value="PROTESTAN">PROTESTAN</option>
 										<option value="KATOLIK">KATOLIK</option>
 										<option value="HINDU">HINDU</option>
@@ -177,10 +175,9 @@
 									</select>
 								</div>
 								<div class="form-group col-md-4">
-									<label for="inputAddress">Golongan Darah</label>
-									<select class="custom-select mr-sm-2" id="inlineFormCustomSelect">
-										<option selected>Pilih...</option>
-										<option value="A">A</option>
+									<label for="goldarah">Golongan Darah</label>
+									<select name="gol_darah" class="custom-select mr-sm-2" id="goldarah">
+										<option selected value="A">A</option>
 										<option value="B">B</option>
 										<option value="O">O</option>
 										<option value="AB">AB</option>
@@ -189,38 +186,46 @@
 							</div>
 							<div class="form-group">
 								<label for="kewarganegaraan">Kewarganegaraan</label>
-								<select class="custom-select mr-sm-2" id="inlineFormCustomSelect">
-									<option selected>Pilih...</option>
+								<select name="kewarganegaraan" class="custom-select mr-sm-2" id="inlineFormCustomSelect">
 									<?php foreach ($countries as $country) :?>
-										<option><?=  $country['country'] ?></option>
+										<?= $country['country'] === 'Indonesia' ? '<option selected' : '<option ' ?> value="<?= $country['country'] ?>"><?=  $country['country'] ?></option>
 									<?php endforeach; ?>
 								</select>
 							</div>
-
+							<div class="form-group">
+								<label for="email">Email</label>
+								<input name="email" type="email" class="form-control" id="email" placeholder="Masukan Email Mahasiswa">
+							</div>
+							<div class="form-group">
+								<label for="no_hp">No HP</label>
+								<input name="no_hp" type="number" class="form-control" id="no_hp" placeholder="Masukan No HP Mahasiswa">
+							</div>
 						</div>
 						<div class="col-md-6">
 							<div class="form-group">
 								<label for="nik">NIK</label>
-								<input type="text" class="form-control" id="nik" placeholder="Masukan NIK Mahasiswa">
+								<input name="nik" type="number" class="form-control" id="nik" placeholder="Masukan NIK Mahasiswa">
+							</div>
+							<div class="form-group">
+								<label for="nisn">NISN</label>
+								<input name="nisn" type="number" class="form-control" id="nisn" placeholder="Masukan NISN Mahasiswa">
 							</div>
 							<div class="form-group">
 								<label for="no_transportasi">No Transportasi</label>
-								<input type="number" class="form-control" id="no_transportasi" placeholder="Masukan Nomor Transportasi">
+								<input name="id_alat_transportasi" type="number" class="form-control" id="no_transportasi" placeholder="Masukan Nomor Transportasi">
 							</div>
 							<div class="form-row">
 								<div class="form-group col-md-6">
 									<label for="caradaftar">Cara Daftar</label>
-									<select class="custom-select mr-sm-2" id="caradaftar">
-										<option selected>Pilih...</option>
-										<option value="WEBSITE">WEBSITE</option>
+									<select name="cara_daftar" class="custom-select mr-sm-2" id="caradaftar">
+										<option selected value="WEBSITE">WEBSITE</option>
 										<option value="FRONT OFFICE">FRONT OFFICE</option>
 									</select>
 								</div>
 								<div class="form-group col-md-6">
 									<label for="tempatLahir">Info Kampus</label>
-									<select class="custom-select mr-sm-2" id="inlineFormCustomSelect">
-										<option selected>Pilih...</option>
-										<option value="WEBSITE">WEBSITE</option>
+									<select name="tahu_info_kampus" class="custom-select mr-sm-2" id="inlineFormCustomSelect">
+										<option selected value="WEBSITE">WEBSITE</option>
 										<option value="BROSUR">BROSUR</option>
 										<option value="SURAT KABAR">SURAT KABAR</option>
 										<option value="SOSIAL MEDIA">SOSIAL MEDIA</option>
@@ -228,46 +233,79 @@
 								</div>
 							</div>
 							<div class="form-group">
-								<label for="namaref">Nama Ref</label>
-								<input type="number" class="form-control" id="namaref" placeholder="Masukan Nama Ref">
+								<label for="namaref">Referensi</label>
+								<input name="nama_ref" type="text" class="form-control" id="namaref" placeholder="Masukan Nama Referensi">
 							</div>
 							<div class="form-group">
 								<label for="keterangan">Keterangan</label>
-								<input type="number" class="form-control" id="keterangan" placeholder="Masukan Keterangan">
+								<input name="keterangan" type="text" class="form-control" id="keterangan" placeholder="Masukan Keterangan">
+							</div>
+							<div class="form-group">
+								<label for="penerima_kps">Menerima KPS</label>
+								<select name="tahu_info_kampus" class="custom-select mr-sm-2" id="penerima_kps">
+									<option selected value="YA">YA</option>
+									<option value="TIDAK">TIDAK</option>
+								</select>
+							</div>
+							<div class="form-group">
+								<label for="no_kps">Nomor KPS</label>
+								<input name="no_kps" type="text" class="form-control" id="no_kps" placeholder="Masukan Nomor KPS">
 							</div>
 						</div>
 					</div>
+					<hr>
 					<div class="row">
 						<div class="col-md-6">
 							<div class="form-row">
 								<div class="form-group col-md-8">
 									<label for="alamat">Alamat</label>
-									<textarea class="form-control" id="alamat" rows="5"></textarea>
+									<textarea name="alamat" class="form-control" id="alamat" rows="4"></textarea>
 								</div>
 								<div class="form-row col-md-4">
 									<div class="form-group col-md-6">
 										<label for="rt">RT</label>
-										<input type="number" class="form-control" id="rt">
+										<input name="rt" type="number" class="form-control" id="rt">
 									</div>
 									<div class="form-group col-md-6">
 										<label for="rw">RW</label>
-										<input type="number" class="form-control" id="rw">
+										<input name="rw" type="number" class="form-control" id="rw">
 									</div>
 									<div class="form-group col-md-12">
-										<label for="kodepost">Kode Pos</label>
-										<input type="number" class="form-control" id="kodepost">
+										<label for="kodepos">Kode Pos</label>
+										<input name="kodepos" type="number" class="form-control" id="kodepos">
 									</div>
 								</div>
+							</div>
+							<div class="form-group">
+								<label for="no_telp_rumah">No Telp Rumah</label>
+								<input name="no_telp_rumah" type="number" class="form-control" id="no_telp_rumah" placeholder="Masukan No Telp Rumah Mahasiswa">
+							</div>
+							<div class="form-group">
+								<label for="jenis_tinggal">Jenis Tinggal</label>
+								<select name="jenis_tinggal" class="custom-select mr-sm-2" id="pendidikan_terakhir_ayah">
+									<option selected value="RUMAH SENDIRI">RUMAH SENDIRI</option>
+									<option value="RUMAH ORANG TUA">RUMAH ORANG TUA</option>
+									<option value="KOST">KOST</option>
+									<option value="SEWA RUMAH">SEWA RUMAH</option>
+								</select>
 							</div>
 						</div>
 						<div class="col-md-6">
 							<div class="form-group">
-								<label for="tempatLahir">Keluranan</label>
-								<input type="text" class="form-control" id="tempatLahir" placeholder="Masukan Kelurahan">
+								<label for="kelurahan">Kelurahan</label>
+								<input name="kelurahan" type="text" class="form-control" id="kelurahan" placeholder="Masukan Kelurahan">
 							</div>
 							<div class="form-group">
-								<label for="tempatLahir">Kecamatan</label>
-								<input type="text" class="form-control" placeholder="Masukan Kecamatan">
+								<label for="kecamatan">Kecamatan</label>
+								<input name="kecamatan" type="text" class="form-control" id="kecamatan" placeholder="Masukan Kecamatan">
+							</div>
+							<div class="form-group">
+								<label for="kotakab">Kota</label>
+								<input name="kotakab" type="text" class="form-control" id="kotakab" placeholder="Masukan Kota">
+							</div>
+							<div class="form-group">
+								<label for="id_wilayah">wilayah</label>
+								<input name="id_wilayah" type="text" class="form-control" id="id_wilayah" placeholder="Masukan Wilayah">
 							</div>
 						</div>
 					</div>
@@ -280,28 +318,27 @@
 							<p><b>Data Ayah</b></p>
 							<div class="form-group">
 								<label for="nik_ayah">NIK</label>
-								<input type="number" class="form-control" id="nik_ayah" placeholder="Masukan NIK">
+								<input name="nik_ayah" type="number" class="form-control" id="nik_ayah" placeholder="Masukan NIK">
 							</div>
 							<div class="form-group">
 								<label for="nama_ayah">Nama Lengkap</label>
-								<input type="text" class="form-control" id="nama_ayah" placeholder="Masukan Nama Lengkap">
+								<input name="nama_ayah" type="text" class="form-control" id="nama_ayah" placeholder="Masukan Nama Lengkap">
 							</div>
 							<div class="form-row">
 								<div class="form-group col-md-6">
-									<label for="tempatLahir">Tempat Lahir</label>
-									<input type="text" class="form-control" id="tempatLahir" placeholder="Tempat Lahir">
+									<label for="tempatLahirayah">Tempat Lahir</label>
+									<input name="tempat_lahir_ayah" type="text" class="form-control" id="tempatLahirayah" placeholder="Tempat Lahir">
 								</div>
 								<div class="form-group col-md-6">
 									<label for="tempatLahir">Tanggal Lahir</label>
-									<input type="text" class="form-control" data-toggle="tempatLahir" placeholder="Tanggal Lahir">
+									<input name="tanggal_lahir_ayah" type="text" class="form-control" data-toggle="tempatLahir" placeholder="Tanggal Lahir">
 								</div>
 							</div>
 							<div class="form-row">
 								<div class="form-group col-md-6">
 									<label for="pendidikan_terakhir_ayah">Pend. Terakhir</label>
-									<select class="custom-select mr-sm-2" id="inlineFormCustomSelect">
-										<option selected>Pilih...</option>
-										<option value="TIDAK SEKOLAH">TIDAK SEKOLAH</option>
+									<select name="pendidikan_ayah" class="custom-select mr-sm-2" id="pendidikan_terakhir_ayah">
+										<option selected value="TIDAK SEKOLAH">TIDAK SEKOLAH</option>
 										<option value="SD">SD</option>
 										<option value="SMP">SMP</option>
 										<option value="SMA/SMK">SMA/SMK</option>
@@ -312,12 +349,16 @@
 								</div>
 								<div class="form-group col-md-6">
 									<label for="pekerjaan">Pekerjaan</label>
-									<input type="text" class="form-control" data-toggle="pekerjaan" placeholder="Masukan Pekerjaan">
+									<input name="pekerjaan_ayah" type="text" class="form-control" data-toggle="pekerjaan" placeholder="Masukan Pekerjaan">
 								</div>
 							</div>
 							<div class="form-group">
+								<label for="penghasilan">Penghasilan</label>
+								<input name="penghasilan_ayah" type="number" class="form-control" data-toggle="penghasilan" placeholder="Masukan Penghasilan">
+							</div>
+							<div class="form-group">
 								<label for="kebutuhan">Kebutuhan Khusus</label>
-								<input type="text" class="form-control" data-toggle="kebutuhan" placeholder="Masukan Kebutuhan Khusus">
+								<input name="id_kebutuhan_khusus_ayah" type="text" class="form-control" data-toggle="kebutuhan" placeholder="Masukan Kebutuhan Khusus">
 							</div>
 						</div>
 
@@ -325,28 +366,27 @@
 							<p><b>Data Ibu</b></p>
 							<div class="form-group">
 								<label for="nik_ibu">NIK</label>
-								<input type="number" class="form-control" id="nik_ibu" placeholder="Masukan NIK">
+								<input name="nik_ibu" type="number" class="form-control" id="nik_ibu" placeholder="Masukan NIK">
 							</div>
 							<div class="form-group">
 								<label for="nama_ibu">Nama Lengkap</label>
-								<input type="text" class="form-control" id="nama_ibu" placeholder="Masukan Nama Lengkap">
+								<input name="nama_ibu" type="text" class="form-control" id="nama_ibu" placeholder="Masukan Nama Lengkap">
 							</div>
 							<div class="form-row">
 								<div class="form-group col-md-6">
-									<label for="tempatLahir">Tempat Lahir</label>
-									<input type="text" class="form-control" id="tempatLahir" placeholder="Tempat Lahir">
+									<label for="tempatLahiribu">Tempat Lahir</label>
+									<input name="tempat_lahir_ibu" type="text" class="form-control" id="tempatLahiribu" placeholder="Tempat Lahir">
 								</div>
 								<div class="form-group col-md-6">
 									<label for="tempatLahir">Tanggal Lahir</label>
-									<input type="text" class="form-control" data-toggle="tempatLahir" placeholder="Tanggal Lahir">
+									<input name="tanggal_lahir_ibu" type="text" class="form-control" data-toggle="tempatLahir" placeholder="Tanggal Lahir">
 								</div>
 							</div>
 							<div class="form-row">
 								<div class="form-group col-md-6">
 									<label for="pendidikan_terakhir_ibu">Pend. Terakhir</label>
-									<select class="custom-select mr-sm-2" id="inlineFormCustomSelect">
-										<option selected>Pilih...</option>
-										<option value="TIDAK SEKOLAH">TIDAK SEKOLAH</option>
+									<select name="pendidikan_ibu" class="custom-select mr-sm-2" id="pendidikan_terakhir_ibu">
+										<option selected value="TIDAK SEKOLAH">TIDAK SEKOLAH</option>
 										<option value="SD">SD</option>
 										<option value="SMP">SMP</option>
 										<option value="SMA/SMK">SMA/SMK</option>
@@ -357,12 +397,16 @@
 								</div>
 								<div class="form-group col-md-6">
 									<label for="pekerjaan">Pekerjaan</label>
-									<input type="text" class="form-control" data-toggle="pekerjaan" placeholder="Masukan Pekerjaan">
+									<input name="pekerjaan_ibu" type="text" class="form-control" data-toggle="pekerjaan" placeholder="Masukan Pekerjaan">
 								</div>
 							</div>
 							<div class="form-group">
+								<label for="penghasilan">Penghasilan</label>
+								<input name="penghasilan_ayah" type="number" class="form-control" data-toggle="penghasilan" placeholder="Masukan Penghasilan">
+							</div>
+							<div class="form-group">
 								<label for="kebutuhan">Kebutuhan Khusus</label>
-								<input type="text" class="form-control" data-toggle="kebutuhan" placeholder="Masukan Kebutuhan Khusus">
+								<input name="id_kebutuhan_khusus_ibu" type="text" class="form-control" data-toggle="kebutuhan" placeholder="Masukan Kebutuhan Khusus">
 							</div>
 						</div>
 					</div>
@@ -376,39 +420,38 @@
 							<div class="col-md-6">
 								<div class="form-group">
 									<label for="asal_sekolah">Asal Sekolah</label>
-									<input type="number" class="form-control" id="asal_sekolah" placeholder="Masukan Asal Sekolah">
+									<input name="asal_sekolah" type="text" class="form-control" id="asal_sekolah" placeholder="Masukan Asal Sekolah">
 								</div>
 								<div class="form-group">
 									<label for="alamat_sekolah">Alamat Sekolah</label>
-									<textarea type="text" class="form-control" id="alamat_sekolah" rows="3"></textarea>
+									<textarea name="alamat_sekolah" type="text" class="form-control" id="alamat_sekolah" rows="3"></textarea>
 								</div>
 								<div class="form-group">
 									<label for="lokasisekolah">Lokasi Sekolah</label>
-									<input type="text" class="form-control" id="lokasisekolah" placeholder="Lokasi Sekolah">
+									<input name="kotakab_sekolah" type="text" class="form-control" id="lokasisekolah" placeholder="Lokasi Sekolah">
 								</div>
 							</div>
 							<div class="col-md-6">
 								<div class="form-group">
 									<label for="jurusan">Jurusan</label>
-									<input type="text" class="form-control" id="jurusan" placeholder="Masukan Jurusan">
+									<input name="jurusan_sekolah" type="text" class="form-control" id="jurusan" placeholder="Masukan Jurusan">
 								</div>
 								<div class="form-row">
 									<div class="form-group col-md-8">
 										<label for="alamat_email_sekolah">Alamat Email</label>
-										<input type="email" class="form-control" id="alamat_email_sekolah" placeholder="Masukan Alamat Email">
+										<input name="email_sekolah" type="email" class="form-control" id="alamat_email_sekolah" placeholder="Masukan Alamat Email">
 									</div>
 									<div class="form-group col-md-4">
 										<label for="kode_pos_sekolah">Kode Pos</label>
-										<input type="number" class="form-control" id="kode_pos_sekolah" placeholder="Masukan Kode Pos">
+										<input name="pos_sekolah" type="number" class="form-control" id="kode_pos_sekolah" placeholder="Masukan Kode Pos">
 									</div>
 								</div>
 								<div class="form-group">
 									<label for="nomor_telp">Nomor Telp</label>
-									<input type="number" class="form-control" id="nomor_telp" placeholder="Masukan Nomor Telp">
+									<input name="no_telp_sekolah" type="number" class="form-control" id="nomor_telp" placeholder="Masukan Nomor Telp">
 								</div>
 							</div>
 						</div>
-
 					</div>
 
 
