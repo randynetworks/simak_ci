@@ -139,20 +139,20 @@
 						<div class="col-md-6">
 							<div class="form-group">
 								<label for="inputAddress">Nomor Daftar</label>
-								<input type="text" class="form-control" id="inputAddress" value="<?= $this->master_model->getLastData('no_daftar', 'mahasiswa') + 1?>" disabled>
+								<input  type="text" class="form-control" id="inputAddress" value="<?= $this->master_model->getLastData('no_daftar', 'mahasiswa') + 1?>" disabled>
 							</div>
 							<div class="form-group">
 								<label for="nama">Nama Lengkap</label>
-								<input name="nama_lengkap" type="text" class="form-control" id="nama" placeholder="Masukan Nama Lengkap">
+								<input value="<?= set_value('nama_lengkap') ?>" name="nama_lengkap" type="text" class="form-control" id="nama" placeholder="Masukan Nama Lengkap">
 							</div>
 							<div class="form-row">
 								<div class="form-group col-md-6">
 									<label for="tempatLahir">Tempat Lahir</label>
-									<input name="tempat_lahir" type="text" class="form-control" id="tempatLahir" placeholder="Tempat Lahir">
+									<input value="<?= set_value('tempat_lahir') ?>" name="tempat_lahir" type="text" class="form-control" id="tempatLahir" placeholder="Tempat Lahir">
 								</div>
 								<div class="form-group col-md-6">
 									<label for="tanggallahir">Tanggal Lahir</label>
-									<input name="tgl_lahir" type="text" class="form-control" data-toggle="datepicker1" placeholder="Tanggal Lahir">
+									<input value="<?= set_value('tgl_lahir') ?>" name="tgl_lahir" type="text" class="form-control" data-toggle="datepicker1" placeholder="Tanggal Lahir">
 								</div>
 							</div>
 							<div class="form-row">
@@ -194,25 +194,25 @@
 							</div>
 							<div class="form-group">
 								<label for="email">Email</label>
-								<input name="email" type="email" class="form-control" id="email" placeholder="Masukan Email Mahasiswa">
+								<input value="<?= set_value('email') ?>" name="email" type="email" class="form-control" id="email" placeholder="Masukan Email Mahasiswa">
 							</div>
 							<div class="form-group">
 								<label for="no_hp">No HP</label>
-								<input name="no_hp" type="number" class="form-control" id="no_hp" placeholder="Masukan No HP Mahasiswa">
+								<input value="<?= set_value('no_hp') ?>" name="no_hp" type="number" class="form-control" id="no_hp" placeholder="Masukan No HP Mahasiswa">
 							</div>
 						</div>
 						<div class="col-md-6">
 							<div class="form-group">
 								<label for="nik">NIK</label>
-								<input name="nik" type="number" class="form-control" id="nik" placeholder="Masukan NIK Mahasiswa">
+								<input value="<?= set_value('nik') ?>" name="nik" type="number" class="form-control" id="nik" placeholder="Masukan NIK Mahasiswa">
 							</div>
 							<div class="form-group">
 								<label for="nisn">NISN</label>
-								<input name="nisn" type="number" class="form-control" id="nisn" placeholder="Masukan NISN Mahasiswa">
+								<input value="<?= set_value('nisn') ?>" name="nisn" type="number" class="form-control" id="nisn" placeholder="Masukan NISN Mahasiswa">
 							</div>
 							<div class="form-group">
 								<label for="no_transportasi">No Transportasi</label>
-								<input name="id_alat_transportasi" type="number" class="form-control" id="no_transportasi" placeholder="Masukan Nomor Transportasi">
+								<input value="<?= set_value('id_alat_transportasi') ?>" name="id_alat_transportasi" type="number" class="form-control" id="no_transportasi" placeholder="Masukan Nomor Transportasi">
 							</div>
 							<div class="form-row">
 								<div class="form-group col-md-6">
@@ -234,11 +234,11 @@
 							</div>
 							<div class="form-group">
 								<label for="namaref">Referensi</label>
-								<input name="nama_ref" type="text" class="form-control" id="namaref" placeholder="Masukan Nama Referensi">
+								<input value="<?= set_value('nama_ref') ?>" name="nama_ref" type="text" class="form-control" id="namaref" placeholder="Masukan Nama Referensi">
 							</div>
 							<div class="form-group">
 								<label for="keterangan">Keterangan</label>
-								<input name="keterangan" type="text" class="form-control" id="keterangan" placeholder="Masukan Keterangan">
+								<input value="<?= set_value('keterangan') ?>" name="keterangan" type="text" class="form-control" id="keterangan" placeholder="Masukan Keterangan">
 							</div>
 							<div class="form-group">
 								<label for="penerima_kps">Menerima KPS</label>
@@ -249,7 +249,7 @@
 							</div>
 							<div class="form-group">
 								<label for="no_kps">Nomor KPS</label>
-								<input name="no_kps" type="text" class="form-control" id="no_kps" placeholder="Masukan Nomor KPS">
+								<input value="<?= set_value('no_kps') ?>" name="no_kps" type="text" class="form-control" id="no_kps" placeholder="Masukan Nomor KPS">
 							</div>
 						</div>
 					</div>
@@ -259,26 +259,26 @@
 							<div class="form-row">
 								<div class="form-group col-md-8">
 									<label for="alamat">Alamat</label>
-									<textarea name="alamat" class="form-control" id="alamat" rows="4"></textarea>
+									<textarea name="alamat" class="form-control" id="alamat" rows="4"><?= set_value('alamat') ?></textarea>
 								</div>
 								<div class="form-row col-md-4">
 									<div class="form-group col-md-6">
 										<label for="rt">RT</label>
-										<input name="rt" type="number" class="form-control" id="rt">
+										<input value="<?= set_value('rt') ?>" name="rt" type="number" class="form-control" id="rt">
 									</div>
 									<div class="form-group col-md-6">
 										<label for="rw">RW</label>
-										<input name="rw" type="number" class="form-control" id="rw">
+										<input value="<?= set_value('rw') ?>" name="rw" type="number" class="form-control" id="rw">
 									</div>
 									<div class="form-group col-md-12">
 										<label for="kodepos">Kode Pos</label>
-										<input name="kodepos" type="number" class="form-control" id="kodepos">
+										<input value="<?= set_value('kodepos') ?>" name="kodepos" type="number" class="form-control" id="kodepos">
 									</div>
 								</div>
 							</div>
 							<div class="form-group">
 								<label for="no_telp_rumah">No Telp Rumah</label>
-								<input name="no_telp_rumah" type="number" class="form-control" id="no_telp_rumah" placeholder="Masukan No Telp Rumah Mahasiswa">
+								<input value="<?= set_value('no_telp_rumah') ?>" name="no_telp_rumah" type="number" class="form-control" id="no_telp_rumah" placeholder="Masukan No Telp Rumah Mahasiswa">
 							</div>
 							<div class="form-group">
 								<label for="jenis_tinggal">Jenis Tinggal</label>
@@ -293,19 +293,23 @@
 						<div class="col-md-6">
 							<div class="form-group">
 								<label for="kelurahan">Kelurahan</label>
-								<input name="kelurahan" type="text" class="form-control" id="kelurahan" placeholder="Masukan Kelurahan">
+								<input value="<?= set_value('kelurahan') ?>" name="kelurahan" type="text" class="form-control" id="kelurahan" placeholder="Masukan Kelurahan">
 							</div>
 							<div class="form-group">
 								<label for="kecamatan">Kecamatan</label>
-								<input name="kecamatan" type="text" class="form-control" id="kecamatan" placeholder="Masukan Kecamatan">
+								<input value="<?= set_value('kec') ?>" name="kec" type="text" class="form-control" id="kecamatan" placeholder="Masukan Kecamatan">
 							</div>
 							<div class="form-group">
 								<label for="kotakab">Kota</label>
-								<input name="kotakab" type="text" class="form-control" id="kotakab" placeholder="Masukan Kota">
+								<input value="<?= set_value('kotakab') ?>" name="kotakab" type="text" class="form-control" id="kotakab" placeholder="Masukan Kota">
+							</div>
+							<div class="form-group">
+								<label for="prov">Provinsi</label>
+								<input value="<?= set_value('prov') ?>" name="prov" type="text" class="form-control" id="prov" placeholder="Masukan Provinsi">
 							</div>
 							<div class="form-group">
 								<label for="id_wilayah">wilayah</label>
-								<input name="id_wilayah" type="text" class="form-control" id="id_wilayah" placeholder="Masukan Wilayah">
+								<input value="<?= set_value('id_wilayah') ?>" name="id_wilayah" type="text" class="form-control" id="id_wilayah" placeholder="Masukan Wilayah">
 							</div>
 						</div>
 					</div>
@@ -318,20 +322,20 @@
 							<p><b>Data Ayah</b></p>
 							<div class="form-group">
 								<label for="nik_ayah">NIK</label>
-								<input name="nik_ayah" type="number" class="form-control" id="nik_ayah" placeholder="Masukan NIK">
+								<input value="<?= set_value('nik_ayah') ?>" name="nik_ayah" type="number" class="form-control" id="nik_ayah" placeholder="Masukan NIK">
 							</div>
 							<div class="form-group">
 								<label for="nama_ayah">Nama Lengkap</label>
-								<input name="nama_ayah" type="text" class="form-control" id="nama_ayah" placeholder="Masukan Nama Lengkap">
+								<input value="<?= set_value('nama_ayah') ?>" name="nama_ayah" type="text" class="form-control" id="nama_ayah" placeholder="Masukan Nama Lengkap">
 							</div>
 							<div class="form-row">
 								<div class="form-group col-md-6">
 									<label for="tempatLahirayah">Tempat Lahir</label>
-									<input name="tempat_lahir_ayah" type="text" class="form-control" id="tempatLahirayah" placeholder="Tempat Lahir">
+									<input value="<?= set_value('tempat_lahir_ayah') ?>" name="tempat_lahir_ayah" type="text" class="form-control" id="tempatLahirayah" placeholder="Tempat Lahir">
 								</div>
 								<div class="form-group col-md-6">
 									<label for="tempatLahir">Tanggal Lahir</label>
-									<input name="tanggal_lahir_ayah" type="text" class="form-control" data-toggle="tempatLahir" placeholder="Tanggal Lahir">
+									<input value="<?= set_value('tanggal_lahir_ayah') ?>" name="tanggal_lahir_ayah" type="text" class="form-control" data-toggle="tempatLahir" placeholder="Tanggal Lahir">
 								</div>
 							</div>
 							<div class="form-row">
@@ -349,16 +353,16 @@
 								</div>
 								<div class="form-group col-md-6">
 									<label for="pekerjaan">Pekerjaan</label>
-									<input name="pekerjaan_ayah" type="text" class="form-control" data-toggle="pekerjaan" placeholder="Masukan Pekerjaan">
+									<input value="<?= set_value('pekerjaan_ayah') ?>" name="pekerjaan_ayah" type="text" class="form-control" data-toggle="pekerjaan" placeholder="Masukan Pekerjaan">
 								</div>
 							</div>
 							<div class="form-group">
 								<label for="penghasilan">Penghasilan</label>
-								<input name="penghasilan_ayah" type="number" class="form-control" data-toggle="penghasilan" placeholder="Masukan Penghasilan">
+								<input value="<?= set_value('penghasilan_ayah') ?>" name="penghasilan_ayah" type="number" class="form-control" data-toggle="penghasilan" placeholder="Masukan Penghasilan">
 							</div>
 							<div class="form-group">
 								<label for="kebutuhan">Kebutuhan Khusus</label>
-								<input name="id_kebutuhan_khusus_ayah" type="text" class="form-control" data-toggle="kebutuhan" placeholder="Masukan Kebutuhan Khusus">
+								<input value="<?= set_value('id_kebutuhan_khusus_ayah') ?>" name="id_kebutuhan_khusus_ayah" type="text" class="form-control" data-toggle="kebutuhan" placeholder="Masukan Kebutuhan Khusus">
 							</div>
 						</div>
 
@@ -366,20 +370,20 @@
 							<p><b>Data Ibu</b></p>
 							<div class="form-group">
 								<label for="nik_ibu">NIK</label>
-								<input name="nik_ibu" type="number" class="form-control" id="nik_ibu" placeholder="Masukan NIK">
+								<input value="<?= set_value('nik_ibu') ?>" name="nik_ibu" type="number" class="form-control" id="nik_ibu" placeholder="Masukan NIK">
 							</div>
 							<div class="form-group">
 								<label for="nama_ibu">Nama Lengkap</label>
-								<input name="nama_ibu" type="text" class="form-control" id="nama_ibu" placeholder="Masukan Nama Lengkap">
+								<input value="<?= set_value('nama_ibu') ?>" name="nama_ibu" type="text" class="form-control" id="nama_ibu" placeholder="Masukan Nama Lengkap">
 							</div>
 							<div class="form-row">
 								<div class="form-group col-md-6">
 									<label for="tempatLahiribu">Tempat Lahir</label>
-									<input name="tempat_lahir_ibu" type="text" class="form-control" id="tempatLahiribu" placeholder="Tempat Lahir">
+									<input value="<?= set_value('tempat_lahir_ibu') ?>" name="tempat_lahir_ibu" type="text" class="form-control" id="tempatLahiribu" placeholder="Tempat Lahir">
 								</div>
 								<div class="form-group col-md-6">
 									<label for="tempatLahir">Tanggal Lahir</label>
-									<input name="tanggal_lahir_ibu" type="text" class="form-control" data-toggle="tempatLahir" placeholder="Tanggal Lahir">
+									<input value="<?= set_value('tanggal_lahir_ibu') ?>" name="tanggal_lahir_ibu" type="text" class="form-control" data-toggle="tempatLahir" placeholder="Tanggal Lahir">
 								</div>
 							</div>
 							<div class="form-row">
@@ -397,16 +401,16 @@
 								</div>
 								<div class="form-group col-md-6">
 									<label for="pekerjaan">Pekerjaan</label>
-									<input name="pekerjaan_ibu" type="text" class="form-control" data-toggle="pekerjaan" placeholder="Masukan Pekerjaan">
+									<input value="<?= set_value('pekerjaan_ibu') ?>" name="pekerjaan_ibu" type="text" class="form-control" data-toggle="pekerjaan" placeholder="Masukan Pekerjaan">
 								</div>
 							</div>
 							<div class="form-group">
 								<label for="penghasilan">Penghasilan</label>
-								<input name="penghasilan_ayah" type="number" class="form-control" data-toggle="penghasilan" placeholder="Masukan Penghasilan">
+								<input value="<?= set_value('penghasilan_ibu') ?>" name="penghasilan_ibu" type="number" class="form-control" data-toggle="penghasilan" placeholder="Masukan Penghasilan">
 							</div>
 							<div class="form-group">
 								<label for="kebutuhan">Kebutuhan Khusus</label>
-								<input name="id_kebutuhan_khusus_ibu" type="text" class="form-control" data-toggle="kebutuhan" placeholder="Masukan Kebutuhan Khusus">
+								<input value="<?= set_value('id_kebutuhan_khusus_ibu') ?>" name="id_kebutuhan_khusus_ibu" type="text" class="form-control" data-toggle="kebutuhan" placeholder="Masukan Kebutuhan Khusus">
 							</div>
 						</div>
 					</div>
@@ -420,35 +424,35 @@
 							<div class="col-md-6">
 								<div class="form-group">
 									<label for="asal_sekolah">Asal Sekolah</label>
-									<input name="asal_sekolah" type="text" class="form-control" id="asal_sekolah" placeholder="Masukan Asal Sekolah">
+									<input value="<?= set_value('asal_sekolah') ?>" name="asal_sekolah" type="text" class="form-control" id="asal_sekolah" placeholder="Masukan Asal Sekolah">
 								</div>
 								<div class="form-group">
 									<label for="alamat_sekolah">Alamat Sekolah</label>
-									<textarea name="alamat_sekolah" type="text" class="form-control" id="alamat_sekolah" rows="3"></textarea>
+									<textarea name="alamat_sekolah" type="text" class="form-control" id="alamat_sekolah" rows="3"><?= set_value('alamat_sekolah') ?></textarea>
 								</div>
 								<div class="form-group">
 									<label for="lokasisekolah">Lokasi Sekolah</label>
-									<input name="kotakab_sekolah" type="text" class="form-control" id="lokasisekolah" placeholder="Lokasi Sekolah">
+									<input value="<?= set_value('kotakab_sekolah') ?>" name="kotakab_sekolah" type="text" class="form-control" id="lokasisekolah" placeholder="Lokasi Sekolah">
 								</div>
 							</div>
 							<div class="col-md-6">
 								<div class="form-group">
 									<label for="jurusan">Jurusan</label>
-									<input name="jurusan_sekolah" type="text" class="form-control" id="jurusan" placeholder="Masukan Jurusan">
+									<input value="<?= set_value('jurusan_sekolah') ?>" name="jurusan_sekolah" type="text" class="form-control" id="jurusan" placeholder="Masukan Jurusan">
 								</div>
 								<div class="form-row">
 									<div class="form-group col-md-8">
 										<label for="alamat_email_sekolah">Alamat Email</label>
-										<input name="email_sekolah" type="email" class="form-control" id="alamat_email_sekolah" placeholder="Masukan Alamat Email">
+										<input value="<?= set_value('email_sekolah') ?>" name="email_sekolah" type="email" class="form-control" id="alamat_email_sekolah" placeholder="Masukan Alamat Email">
 									</div>
 									<div class="form-group col-md-4">
 										<label for="kode_pos_sekolah">Kode Pos</label>
-										<input name="pos_sekolah" type="number" class="form-control" id="kode_pos_sekolah" placeholder="Masukan Kode Pos">
+										<input value="<?= set_value('pos_sekolah') ?>" name="pos_sekolah" type="number" class="form-control" id="kode_pos_sekolah" placeholder="Masukan Kode Pos">
 									</div>
 								</div>
 								<div class="form-group">
 									<label for="nomor_telp">Nomor Telp</label>
-									<input name="no_telp_sekolah" type="number" class="form-control" id="nomor_telp" placeholder="Masukan Nomor Telp">
+									<input value="<?= set_value('no_telp_sekolah') ?>" name="no_telp_sekolah" type="number" class="form-control" id="nomor_telp" placeholder="Masukan Nomor Telp">
 								</div>
 							</div>
 						</div>

@@ -374,6 +374,13 @@ class Dashboard extends CI_Controller
 		$data = $this->infoData("Edit Data $title");
 
 		$data['item'] = $this->master_model->get_data($info, $id);
+		if ($info === 'mahasiswa') {
+			$ch = curl_init('https://api.first.org/data/v1/countries');
+			curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+			$result = curl_exec($ch);
+			curl_close($ch);
+			$data['countries'] = json_decode($result, true, 512, JSON_THROW_ON_ERROR)['data'];
+		}
 
 		$this->view_template('dashboard/' . $url, $data);
 	}
@@ -386,7 +393,7 @@ class Dashboard extends CI_Controller
 
 		$data = $this->post_content($info);
 
-		$where = array('id' => $this->input->post('id'));
+		$where = array( $info === 'mahasiswa' ? 'no_daftar' : 'id' => $this->input->post( $info === 'mahasiswa' ? 'no_daftar' : 'id'));
 		$this->master_model->update_data($where, $data, $info);
 
 		redirect('dashboard/show/' . $info);
