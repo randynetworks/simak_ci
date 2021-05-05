@@ -517,7 +517,8 @@ class Dashboard extends CI_Controller
 	// export excel
 	public function export($table)
 	{
-		$data = $this->master_model->get_data($table);
+		ini_set("memory_limit","512M");
+		$data = $this->master_model->getJustData($table);
 		$spreadsheet = new Spreadsheet;
 		$tables = $this->master_model->getListField($table);
 

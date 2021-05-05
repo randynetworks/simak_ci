@@ -161,4 +161,10 @@ class Master_model extends CI_Model
 	{
 		return $seach !== null ?  $this->db->like($table === 'mahasiswa' ? 'nama_lengkap': 'nama', $seach)->get($table)->num_rows() : $this->db->get($table)->num_rows();
 	}
+
+	public function getJustData($table)
+	{
+		$query = $this->db->order_by(($table === "mahasiswa") ? 'no_daftar' :'id', 'DESC')->get($table);
+		return $query->result_array();
+	}
 }
