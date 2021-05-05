@@ -59,14 +59,9 @@ class Dashboard extends CI_Controller
 		// GET KEYWORD
 		if ($this->input->post('submit')) {
 			return $data['keyword'] = $this->input->post('keyword');
-		} else {
-			return $data['keyword'] = 	null;
 		}
+		return $data['keyword'] = 	null;
 
-		// reset
-		if ($this->input->post('reset')) {
-			return $data['keyword'] = 	null;
-		}
 	}
 
 
@@ -276,7 +271,14 @@ class Dashboard extends CI_Controller
 
 		// ============= SEARCHING LOGIC =================
 		// get data from post keyword form in view for searching
+		$keyword = null;
 		$search = $this->input->post('keyword');
+		if ($search)
+		{
+			$this->session->set_userdata('keyword', $search);
+		} else {
+			$search = $this->session->userdata('keyword');
+		}
 
 		// =============== PAGINATION ===================
 
@@ -284,38 +286,10 @@ class Dashboard extends CI_Controller
 		$this->load->library('pagination');
 
 		$config['base_url']  = 'http://localhost/simak_ci/dashboard/show/' . $info;
-		$config['total_rows'] = $this->master_model->getCountRows($info);
+		$config['total_rows'] = $this->master_model->getCountRows($info, $search);
 		$config['per_page'] = 10;
 		$config['start'] = $this->uri->segment(4);
-		$config['num_links'] = 3;
 
-		// STYLE
-		$config['full_tag_open'] = '<nav><ul class="pagination justify-content-end">';
-		$config['full_tag_close'] = '  </ul></nav>';
-
-		$config['first_link'] = 'Awal';
-		$config['first_tag_open'] = '<li class="page-item">';
-		$config['first_tag_close'] = '  </li>';
-
-		$config['last_link'] = 'Akhir';
-		$config['last_tag_open'] = '<li class="page-item">';
-		$config['last_tag_close'] = '  </li>';
-
-		$config['next_link'] = '&raquo';
-		$config['next_tag_open'] = '<li class="page-item">';
-		$config['next_tag_close'] = '  </li>';
-
-		$config['prev_link'] = '&laquo';
-		$config['prev_tag_open'] = '<li class="page-item">';
-		$config['prev_tag_close'] = '  </li>';
-
-		$config['cur_tag_open'] = '<li class="page-item active">  <a class="page-link" href="#">';
-		$config['cur_tag_close'] = '</a> </li>';
-
-		$config['name_tag_open'] = '<li class="page-item">';
-		$config['name_tag_close'] = '  </li>';
-
-		$config['attributes'] =array('class' => 'page-link');
 		// Initiol
 		$this->pagination->initialize($config);
 
@@ -372,6 +346,10 @@ class Dashboard extends CI_Controller
 			$result = curl_exec($ch);
 			curl_close($ch);
 			$data['countries'] = json_decode($result, true, 512, JSON_THROW_ON_ERROR)['data'];
+		}
+		if($this->input->post('reset'))
+		{
+			$this->session->unset_userdata('keyword');
 		}
 
 		// view

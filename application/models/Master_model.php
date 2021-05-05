@@ -157,8 +157,8 @@ class Master_model extends CI_Model
 		return $result;
 	}
 
-	public function getCountRows($table)
+	public function getCountRows($table, $seach = null)
 	{
-		return $this->db->get($table)->num_rows();
+		return $seach !== null ?  $this->db->like($table === 'mahasiswa' ? 'nama_lengkap': 'nama', $seach)->get($table)->num_rows() : $this->db->get($table)->num_rows();
 	}
 }

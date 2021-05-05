@@ -64,8 +64,8 @@
 					</button>
 				</div>
 				<div class="col-md-1">
-					<form action="<?php echo base_url('dashboard/show/mahasiswa') ?>" method="get">
-						<button type="submit" class="btn btn-outline-danger">Reset</button>
+					<form action="<?php echo base_url('dashboard/show/mahasiswa') ?>" method="post">
+						<input type="submit" class="btn btn-outline-danger" name="reset" value="Reset">
 					</form>
 				</div>
 			</div>
