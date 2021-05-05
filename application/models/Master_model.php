@@ -18,10 +18,10 @@ class Master_model extends CI_Model
 
 
 	// DASHBOARD AREA
-	public function get_data($table, $id = null, $order_by = null, $keyword = null, $filter = null)
+	public function get_data($table, $id = null, $order_by = null, $keyword = null, $filter = null, $limit = null, $start = null)
 	{
 		//  default Take All data
-		$query = $this->db->order_by(($table === "mahasiswa") ? 'no_daftar' :'id', 'DESC')->limit(10)->get($table);
+		$query = $this->db->order_by(($table === "mahasiswa") ? 'no_daftar' :'id', 'DESC')->limit($limit, $start)->get($table);
 
 		if ($id != null) {
 			return $this->db->get_where($table, array(($table === "mahasiswa") ? 'no_daftar' : 'id' => $id))->result()[0];
@@ -33,12 +33,12 @@ class Master_model extends CI_Model
 			$column = ($table === 'mahasiswa') ? 'nama_lengkap' : '';
 
 			// final query for spesific data
-			$query = $this->db->like($column, $keyword)->get($table);
+			$query = $this->db->like($column, $keyword)->limit($limit, $start)->get($table);
 		}
 
 		// Logic for get Orderby
 		if ($order_by != null) {
-			$query = $this->db->order_by($order_by, 'DESC')->get($table);
+			$query = $this->db->order_by($order_by, 'DESC')->limit($limit, $start)->get($table);
 		}
 
 
@@ -67,7 +67,7 @@ class Master_model extends CI_Model
 					$this->db->like($key, $value);
 				}
 			}
-			$query = $this->db->get($table);
+			$query = $this->db->limit($limit, $start)->get($table);
 		}
 		return $query->result_array();
 	}
@@ -155,5 +155,10 @@ class Master_model extends CI_Model
 			$result += (int)$item->$column;
 		}
 		return $result;
+	}
+
+	public function getCountRows($table)
+	{
+		return $this->db->get($table)->num_rows();
 	}
 }
