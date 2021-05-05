@@ -11,7 +11,7 @@
 				Tambah Data <?php echo $title; ?>
 			</button>
 			<a target="_blank" href="<?= base_url('dashboard/export/mahasiswa')?>" class="btn btn-success">
-				Export EXCEL
+				Export Excel
 			</a>
 
 			<div class="row mt-3">
@@ -141,18 +141,18 @@
 								<label for="inputAddress">Nomor Daftar</label>
 								<input  type="text" class="form-control" id="inputAddress" value="<?= $this->master_model->getLastData('no_daftar', 'mahasiswa') + 1?>" disabled>
 							</div>
-							<div class="form-group">
-								<label for="nama">Nama Lengkap</label>
-								<input value="<?= set_value('nama_lengkap') ?>" name="nama_lengkap" type="text" class="form-control" id="nama" placeholder="Masukan Nama Lengkap">
+							<div class="form-group required">
+								<label class='control-label' for="nama">Nama Lengkap</label>
+								<input required="required" value="<?= set_value('nama_lengkap') ?>" name="nama_lengkap" type="text" class="form-control" id="nama" placeholder="Masukan Nama Lengkap">
 							</div>
 							<div class="form-row">
-								<div class="form-group col-md-6">
-									<label for="tempatLahir">Tempat Lahir</label>
-									<input value="<?= set_value('tempat_lahir') ?>" name="tempat_lahir" type="text" class="form-control" id="tempatLahir" placeholder="Tempat Lahir">
+								<div class="form-group required col-md-6">
+									<label class='control-label' for="tempatLahir">Tempat Lahir</label>
+									<input required="required" value="<?= set_value('tempat_lahir') ?>" name="tempat_lahir" type="text" class="form-control" id="tempatLahir" placeholder="Tempat Lahir">
 								</div>
-								<div class="form-group col-md-6">
-									<label for="tanggallahir">Tanggal Lahir</label>
-									<input value="<?= set_value('tgl_lahir') ?>" name="tgl_lahir" type="text" class="form-control" data-toggle="datepicker" placeholder="Tanggal Lahir">
+								<div class="form-group col-md-6 required">
+									<label for="tanggallahir" class='control-label'>Tanggal Lahir</label>
+									<input required="required" value="<?= set_value('tgl_lahir') ?>" name="tgl_lahir" type="text" class="form-control" data-toggle="datepicker" placeholder="Tanggal Lahir">
 								</div>
 							</div>
 							<div class="form-row">
@@ -163,9 +163,9 @@
 										<option value="PEREMPUAN">PEREMPUAN</option>
 									</select>
 								</div>
-								<div class="form-group col-md-4">
-									<label for="agama">Agama</label>
-									<select name="agama" class="custom-select mr-sm-2" id="agama">
+								<div class="form-group col-md-4 required">
+									<label for="agama" class='control-label'>Agama</label>
+									<select required="required" name="agama" class="custom-select mr-sm-2" id="agama">
 										<option selected value="ISLAM">ISLAM</option>
 										<option value="PROTESTAN">PROTESTAN</option>
 										<option value="KATOLIK">KATOLIK</option>
@@ -184,9 +184,9 @@
 									</select>
 								</div>
 							</div>
-							<div class="form-group">
-								<label for="kewarganegaraan">Kewarganegaraan</label>
-								<select name="kewarganegaraan" class="custom-select mr-sm-2" id="inlineFormCustomSelect">
+							<div class="form-group required">
+								<label class='control-label' for="kewarganegaraan">Kewarganegaraan</label>
+								<select required="required" name="kewarganegaraan" class="custom-select mr-sm-2" id="inlineFormCustomSelect">
 									<?php foreach ($countries as $country) :?>
 										<?= $country['country'] === 'Indonesia' ? '<option selected' : '<option ' ?> value="<?= $country['country'] ?>"><?=  $country['country'] ?></option>
 									<?php endforeach; ?>
@@ -202,9 +202,9 @@
 							</div>
 						</div>
 						<div class="col-md-6">
-							<div class="form-group">
-								<label for="nik">NIK</label>
-								<input value="<?= set_value('nik') ?>" name="nik" type="number" class="form-control" id="nik" placeholder="Masukan NIK Mahasiswa">
+							<div class="form-group required">
+								<label class='control-label' for="nik">NIK</label>
+								<input required="required" value="<?= set_value('nik') ?>" name="nik" type="number" class="form-control" id="nik" placeholder="Masukan NIK Mahasiswa">
 							</div>
 							<div class="form-group">
 								<label for="nisn">NISN</label>
@@ -240,9 +240,9 @@
 								<label for="keterangan">Keterangan</label>
 								<input value="<?= set_value('keterangan') ?>" name="keterangan" type="text" class="form-control" id="keterangan" placeholder="Masukan Keterangan">
 							</div>
-							<div class="form-group">
-								<label for="penerima_kps">Menerima KPS</label>
-								<select name="tahu_info_kampus" class="custom-select mr-sm-2" id="penerima_kps">
+							<div class="form-group required">
+								<label for="penerima_kps" class='control-label'>Menerima KPS</label>
+								<select required="required" name="penerima_kps" class="custom-select mr-sm-2" id="penerima_kps">
 									<option selected value="YA">YA</option>
 									<option value="TIDAK">TIDAK</option>
 								</select>
@@ -291,13 +291,13 @@
 							</div>
 						</div>
 						<div class="col-md-6">
-							<div class="form-group">
-								<label for="kelurahan">Kelurahan</label>
-								<input value="<?= set_value('kelurahan') ?>" name="kelurahan" type="text" class="form-control" id="kelurahan" placeholder="Masukan Kelurahan">
+							<div class="form-group required">
+								<label for="kelurahan" class='control-label'>Kelurahan</label>
+								<input required="required" value="<?= set_value('kelurahan') ?>" name="kelurahan" type="text" class="form-control" id="kelurahan" placeholder="Masukan Kelurahan">
 							</div>
-							<div class="form-group">
-								<label for="kecamatan">Kecamatan</label>
-								<input value="<?= set_value('kec') ?>" name="kec" type="text" class="form-control" id="kecamatan" placeholder="Masukan Kecamatan">
+							<div class="form-group required">
+								<label for="kecamatan" class='control-label'>Kecamatan</label>
+								<input required="required" value="<?= set_value('kec') ?>" name="kec" type="text" class="form-control" id="kecamatan" placeholder="Masukan Kecamatan">
 							</div>
 							<div class="form-group">
 								<label for="kotakab">Kota</label>
@@ -372,9 +372,9 @@
 								<label for="nik_ibu">NIK</label>
 								<input value="<?= set_value('nik_ibu') ?>" name="nik_ibu" type="number" class="form-control" id="nik_ibu" placeholder="Masukan NIK">
 							</div>
-							<div class="form-group">
-								<label for="nama_ibu">Nama Lengkap</label>
-								<input value="<?= set_value('nama_ibu') ?>" name="nama_ibu" type="text" class="form-control" id="nama_ibu" placeholder="Masukan Nama Lengkap">
+							<div class="form-group required">
+								<label for="nama_ibu" class='control-label'>Nama Lengkap</label>
+								<input required="required" value="<?= set_value('nama_ibu') ?>" name="nama_ibu" type="text" class="form-control" id="nama_ibu" placeholder="Masukan Nama Lengkap">
 							</div>
 							<div class="form-row">
 								<div class="form-group col-md-6">

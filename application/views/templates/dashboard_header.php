@@ -49,6 +49,11 @@
 		a.text-purple:hover, a.text-purple:focus {
 			color: #8222be !important;
 		}
+
+		.form-group.required .control-label:after {
+			content:" *";
+			color:red;
+		}
 	</style>
 </head>
 
