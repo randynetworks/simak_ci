@@ -25,7 +25,7 @@
 					</div>
 					<div class="form-group col-md-6">
 						<label for="tanggallahir">Tanggal Lahir</label>
-						<input value="<?= $item->tgl_lahir ?>" name="tgl_lahir" type="text" class="form-control" data-toggle="datepicker1" placeholder="Tanggal Lahir">
+						<input value="<?= $item->tgl_lahir ?>" name="tgl_lahir" type="text" class="form-control" data-toggle="datepicker" placeholder="Tanggal Lahir">
 					</div>
 				</div>
 				<div class="form-row">
@@ -115,7 +115,7 @@
 				</div>
 				<div class="form-group">
 					<label for="penerima_kps">Menerima KPS</label>
-					<select name="tahu_info_kampus" class="custom-select mr-sm-2" id="penerima_kps">
+					<select name="penerima_kps" class="custom-select mr-sm-2" id="penerima_kps">
 						<?= $item->cara_daftar === "YA" ? '<option selected' : '<option'?> value="YA">YA</option>
 						<?= $item->cara_daftar === "TIDAK" ? '<option selected' : '<option'?> value="TIDAK">TIDAK</option>
 					</select>
@@ -208,7 +208,7 @@
 					</div>
 					<div class="form-group col-md-6">
 						<label for="tempatLahir">Tanggal Lahir</label>
-						<input value="<?= $item->tanggal_lahir_ayah ?>" name="tanggal_lahir_ayah" type="text" class="form-control" data-toggle="tempatLahir" placeholder="Tanggal Lahir">
+						<input value="<?= $item->tanggal_lahir_ayah ?>" name="tanggal_lahir_ayah" type="text" class="form-control" data-toggle="datepicker" placeholder="Tanggal Lahir">
 					</div>
 				</div>
 				<div class="form-row">
@@ -256,7 +256,7 @@
 					</div>
 					<div class="form-group col-md-6">
 						<label for="tempatLahir">Tanggal Lahir</label>
-						<input value="<?= $item->tanggal_lahir_ibu ?>" name="tanggal_lahir_ibu" type="text" class="form-control" data-toggle="tempatLahir" placeholder="Tanggal Lahir">
+						<input value="<?= $item->tanggal_lahir_ibu ?>" name="tanggal_lahir_ibu" type="text" class="form-control" data-toggle="datepicker" placeholder="Tanggal Lahir">
 					</div>
 				</div>
 				<div class="form-row">

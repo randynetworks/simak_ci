@@ -52,34 +52,46 @@
  <!-- include summernote css/js -->
  <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.css" rel="stylesheet">
  <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.js"></script>
+ <script src="<?php echo base_url('assets/bootstrap-datepicker/js/bootstrap-datepicker.min.js'); ?>"></script>
 
  <script type="text/javascript">
 	 $(document).ready(function() {
 		 $('#summernote').summernote();
 	 });
-	 $('.datepicker').datepicker({
+	 $('[data-toggle="datepicker"]').datepicker({
 		 format: 'yyyy-mm-dd',
-		 startDate: '-3d',
+		 autoclose: true,
+		 todayHighlight: true,
 	 });
 	 $('[data-toggle="datepicker1"]').datepicker({
 		 format: 'yyyy-mm-dd',
-		 startDate: '-3d',
+
+		 autoclose: true,
+		 todayHighlight: true,
 	 });
 	 $('[data-toggle="datepicker2"]').datepicker({
 		 format: 'yyyy-mm-dd',
-		 startDate: '-3d',
+
+		 autoclose: true,
+		 todayHighlight: true,
 	 });
 	 $('[data-toggle="datepicker3"]').datepicker({
 		 format: 'yyyy-mm-dd',
-		 startDate: '-3d',
+
+		 autoclose: true,
+		 todayHighlight: true,
 	 });
 	 $('[data-toggle="datepicker4"]').datepicker({
 		 format: 'yyyy-mm-dd',
-		 startDate: '-3d',
+
+		 autoclose: true,
+		 todayHighlight: true,
 	 });
 	 $('[data-toggle="datepicker5"]').datepicker({
 		 format: 'yyyy-mm-dd',
-		 startDate: '-3d',
+
+		 autoclose: true,
+		 todayHighlight: true,
 	 });
  </script>
 

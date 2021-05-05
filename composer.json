@@ -11,14 +11,17 @@
 		"source": "https://github.com/bcit-ci/CodeIgniter"
 	},
 	"require": {
-		"php": ">=7.4",
-      "ext-json": "*"
+		"php": ">=7.3.2",
+      "ext-json": "*",
+		"phpoffice/phpspreadsheet": "^1.17"
     },
 	"suggest": {
 		"paragonie/random_compat": "Provides better randomness in PHP 5.x"
 	},
 	"require-dev": {
-		"mikey179/vfsStream": "1.1.*",
+	  "roave/security-advisories": "dev-latest"
+	  ,
+	  "mikey179/vfsstream": "1.1.*",
 		"phpunit/phpunit": "4.* || 5.*"
 	}
 }

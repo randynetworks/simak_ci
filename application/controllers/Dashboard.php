@@ -1,6 +1,12 @@
 <?php
 defined('BASEPATH') or exit('No direct script access allowed');
 
+
+require 'vendor/autoload.php';
+
+use PhpOffice\PhpSpreadsheet\Spreadsheet;
+use PhpOffice\PhpSpreadsheet\Writer\Xlsx;
+
 class Dashboard extends CI_Controller
 {
 
@@ -19,6 +25,8 @@ class Dashboard extends CI_Controller
 
 		// DATABSE INIT
 		$this->load->database();
+
+
 	}
 	// email
 	public function nomor_induk()
@@ -488,6 +496,50 @@ class Dashboard extends CI_Controller
 	}
 
 	// ======================================================
+
+	// export excel
+	public function export($table)
+	{
+		$data = $this->master_model->get_data($table);
+		$spreadsheet = new Spreadsheet;
+		$tables = $this->master_model->getListField($table);
+
+		$alpa = 'A';
+
+		foreach ($tables as $item)
+		{
+			$spreadsheet->setActiveSheetIndex(0)->setCellValue($alpa . '1', $item);
+
+			$alpa++;
+		}
+
+		$kolom = 2;
+		$alpa2 = 'A';
+		$i = 0;
+		foreach($data as $item)
+		{
+			foreach ($tables as $col)
+			{
+				$spreadsheet->setActiveSheetIndex(0)->setCellValue($alpa2 . $kolom, $item[$col]);
+
+				if ($col !== end($tables))
+				{
+					$alpa2++;
+				} else {
+					$alpa2 = 'A';
+				}
+				$i++;
+			}
+			$kolom++;
+		}
+
+
+		$writer = new Xlsx($spreadsheet);
+		header('Content-Type: application/vnd.ms-excel');
+		header('Content-Disposition: attachment;filename="REKAP DATA ' .  $table  .'.xlsx"');
+		header('Cache-Control: max-age=0');
+		$writer->save('php://output');
+	}
 
 
 }

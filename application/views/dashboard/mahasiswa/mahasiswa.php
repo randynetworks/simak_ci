@@ -7,12 +7,12 @@
 		<h1 class="h3 mb-4 text-gray-800"><?= $title; ?></h1>
 
 		<div class="mt-4">
-			<button type="button" class="btn btn-success" data-toggle="modal" data-target="#exampleModal">
+			<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
 				Tambah Data <?php echo $title; ?>
 			</button>
-			<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#report">
-				Buat Laporan
-			</button>
+			<a target="_blank" href="<?= base_url('dashboard/export/mahasiswa')?>" class="btn btn-success">
+				Export EXCEL
+			</a>
 
 			<div class="row mt-3">
 
@@ -152,7 +152,7 @@
 								</div>
 								<div class="form-group col-md-6">
 									<label for="tanggallahir">Tanggal Lahir</label>
-									<input value="<?= set_value('tgl_lahir') ?>" name="tgl_lahir" type="text" class="form-control" data-toggle="datepicker1" placeholder="Tanggal Lahir">
+									<input value="<?= set_value('tgl_lahir') ?>" name="tgl_lahir" type="text" class="form-control" data-toggle="datepicker" placeholder="Tanggal Lahir">
 								</div>
 							</div>
 							<div class="form-row">
@@ -335,7 +335,7 @@
 								</div>
 								<div class="form-group col-md-6">
 									<label for="tempatLahir">Tanggal Lahir</label>
-									<input value="<?= set_value('tanggal_lahir_ayah') ?>" name="tanggal_lahir_ayah" type="text" class="form-control" data-toggle="tempatLahir" placeholder="Tanggal Lahir">
+									<input value="<?= set_value('tanggal_lahir_ayah') ?>" name="tanggal_lahir_ayah" type="text" class="form-control" data-toggle="datepicker" placeholder="Tanggal Lahir">
 								</div>
 							</div>
 							<div class="form-row">
@@ -362,7 +362,7 @@
 							</div>
 							<div class="form-group">
 								<label for="kebutuhan">Kebutuhan Khusus</label>
-								<input value="<?= set_value('id_kebutuhan_khusus_ayah') ?>" name="id_kebutuhan_khusus_ayah" type="text" class="form-control" data-toggle="kebutuhan" placeholder="Masukan Kebutuhan Khusus">
+								<input value="<?= set_value('id_kebutuhan_khusus_ayah') ?>" name="id_kebutuhan_khusus_ayah" type="text" class="form-control" placeholder="Masukan Kebutuhan Khusus">
 							</div>
 						</div>
 
@@ -383,7 +383,7 @@
 								</div>
 								<div class="form-group col-md-6">
 									<label for="tempatLahir">Tanggal Lahir</label>
-									<input value="<?= set_value('tanggal_lahir_ibu') ?>" name="tanggal_lahir_ibu" type="text" class="form-control" data-toggle="tempatLahir" placeholder="Tanggal Lahir">
+									<input value="<?= set_value('tanggal_lahir_ibu') ?>" name="tanggal_lahir_ibu" type="text" class="form-control" data-toggle="datepicker" placeholder="Tanggal Lahir">
 								</div>
 							</div>
 							<div class="form-row">
