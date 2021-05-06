@@ -233,67 +233,87 @@
 				<?php echo form_open('dashboard/create/prodi'); ?>
 					<div class="row">
 						<div class="col-md-12">
-							<h5 class="text-center"><b>Data Mahasiswa</b></h5>
+							<h5 class="text-center"><b>Data Prodi</b></h5>
 						</div>
 						<div class="col-md-12">
-							<div class="form-group required">
-								<label class='control-label' for="nama">Nama Lengkap</label>
-								<input required="required" value="<?= set_value('nama_lengkap') ?>" name="nama_lengkap" type="text" class="form-control" id="nama" placeholder="Masukan Nama Lengkap">
+							<div class="form-row">
+								<div class="form-group required col-md-6">
+									<label class='control-label' for="id_prodi">ID Prodi</label>
+									<input required="required" value="<?= $this->master_model->getLastData('id_prodi', 'prodi') + 1?>" name="id_prodi" type="text" class="form-control" id="nama" disabled>
+								</div>
+								<div class="form-group required col-md-6">
+									<label class='control-label'>Kode PS</label>
+									<input required="required" name="kode_ps" type="text" class="form-control" placeholder="Masukan Kode PS">
+								</div>
 							</div>
 							<div class="form-row">
 								<div class="form-group required col-md-6">
-									<label class='control-label' for="tempatLahir">Tempat Lahir</label>
-									<input required="required" value="<?= set_value('tempat_lahir') ?>" name="tempat_lahir" type="text" class="form-control" id="tempatLahir" placeholder="Tempat Lahir">
+									<label class='control-label' for="id_prodi">Jenjang</label>
+									<select required="required" name="id_prodi" class="custom-select mr-sm-2" id="id_prodi">
+										<option selected value="DD">DD</option>
+										<option value="D3">D3</option>
+										<option value="D4">D4</option>
+									</select>
 								</div>
-								<div class="form-group col-md-6 required">
-									<label for="tanggallahir" class='control-label'>Tanggal Lahir</label>
-									<input required="required" value="<?= set_value('tgl_lahir') ?>" name="tgl_lahir" type="text" class="form-control" data-toggle="datepicker" placeholder="Tanggal Lahir">
+								<div class="form-group required col-md-6">
+									<label class='control-label'>Status Studi</label>
+									<select required="required" name="status_prodi" class="custom-select mr-sm-2" id="status_prodi">
+										<option selected value="AKTIF">AKTIF</option>
+										<option value="TIDAK AKTIF">TIDAK AKTIF</option>
+									</select>
 								</div>
 							</div>
 							<div class="form-row">
-								<div class="form-group col-md-4">
-									<label for="jk">Jenis Kelamin</label>
-									<select name="jenis_kelamin" class="custom-select mr-sm-2" id="jk">
-										<option selected value="LAKI-LAKI">LAKI-LAKI</option>
-										<option value="PEREMPUAN">PEREMPUAN</option>
-									</select>
+								<div class="form-group required col-md-6">
+									<label class='control-label' for="nama_prodi">Nama Prodi</label>
+									<input required="required" name="nama_prodi" type="text" class="form-control" placeholder="Masukan Nama Prodi">
+
 								</div>
-								<div class="form-group col-md-4 required">
-									<label for="agama" class='control-label'>Agama</label>
-									<select required="required" name="agama" class="custom-select mr-sm-2" id="agama">
-										<option selected value="ISLAM">ISLAM</option>
-										<option value="PROTESTAN">PROTESTAN</option>
-										<option value="KATOLIK">KATOLIK</option>
-										<option value="HINDU">HINDU</option>
-										<option value="BUDDHA">BUDDHA</option>
-										<option value="KHONGHUCU">KHONGHUCU</option>
-									</select>
+								<div class="form-group required col-md-6">
+									<label class='control-label' for="nama_prodi2"><i>Name of study Program</i></label>
+									<input required="required" name="nama_prodi2" type="text" class="form-control" placeholder="Masukan Nama Prodi">
+
 								</div>
-								<div class="form-group col-md-4">
-									<label for="goldarah">Golongan Darah</label>
-									<select name="gol_darah" class="custom-select mr-sm-2" id="goldarah">
-										<option selected value="A">A</option>
+							</div>
+							<div class="form-row">
+								<div class="form-group required col-md-6">
+									<label class='control-label' for="no_sk_Akred">No SK Akreditasi</label>
+									<input required="required" name="no_sk_Akred" type="text" class="form-control" placeholder="Masukan Nomor SK Akred">
+
+								</div>
+								<div class="form-group required col-md-6">
+									<label class='control-label' for="tgl_akhir_Akred">Tanggal Akhir Akreditasi</label>
+									<input required="required" value="<?= set_value('tgl_akhir_Akred') ?>" data-toggle="datepicker" name="tempat_lahir" type="text" class="form-control" id="tgl_akhir_Akred" placeholder="Tempat Lahir">
+								</div>
+							</div>
+							<div class="form-row">
+								<div class="form-group required col-md-6">
+									<label class='control-label' for="nilai_akreditasi">Nilai Akreditasi</label>
+									<select required="required" name="nilai_akreditasi" class="custom-select mr-sm-2" id="status_prodi">
+										<option selected value="-">-</option>
+										<option value="A">A</option>
 										<option value="B">B</option>
-										<option value="O">O</option>
-										<option value="AB">AB</option>
+										<option value="C">C</option>
 									</select>
 								</div>
 							</div>
-							<div class="form-group required">
-								<label class='control-label' for="kewarganegaraan">Kewarganegaraan</label>
-								<select required="required" name="kewarganegaraan" class="custom-select mr-sm-2" id="inlineFormCustomSelect">
-									<?php foreach ($countries as $country) :?>
-										<?= $country['country'] === 'Indonesia' ? '<option selected' : '<option ' ?> value="<?= $country['country'] ?>"><?=  $country['country'] ?></option>
-									<?php endforeach; ?>
-								</select>
-							</div>
-							<div class="form-group">
-								<label for="email">Email</label>
-								<input value="<?= set_value('email') ?>" name="email" type="email" class="form-control" id="email" placeholder="Masukan Email Mahasiswa">
-							</div>
-							<div class="form-group">
-								<label for="no_hp">No HP</label>
-								<input value="<?= set_value('no_hp') ?>" name="no_hp" type="number" class="form-control" id="no_hp" placeholder="Masukan No HP Mahasiswa">
+							<div class="form-row">
+								<div class="form-group required col-md-6">
+									<label class='control-label' for="no_sk_Akred">Nama Singkatan Prodi</label>
+									<input required="required" name="nama_singkatan_prodi" type="text" class="form-control" placeholder="Masukan Nama singkatan Prodi">
+
+								</div>
+								<div class="form-group required col-md-6">
+									<label class='control-label' for="tgl_akhir_Akred">Ketua Prodi</label>
+
+<!--									Tambah data dosen yang menjabat jadi ketua prodi               -->
+									<select required="required" name="nilai_akreditasi" class="custom-select mr-sm-2" id="status_prodi">
+<!--										NIDN                    -->
+										<option selected value="-">-</option>
+										<option value="3131313131">Pak Paul</option>
+										<option value="1122132121">Ibu Paul</option>
+									</select>
+								</div>
 							</div>
 						</div>
 					</div>

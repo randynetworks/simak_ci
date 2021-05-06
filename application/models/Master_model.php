@@ -98,7 +98,13 @@ class Master_model extends CI_Model
 		// SQL Logic
 		$this->db->select("*");
 		$this->db->from($tabel);
-		$this->db->order_by($tabel === 'mahasiswa' ? 'no_daftar' : 'id', 'DESC');
+		if ($tabel === "mahasiswa") {
+			$this->db->order_by("no_daftar", 'DESC');
+		} else if ($tabel === "prodi") {
+			$this->db->order_by("id_prodi", 'DESC');
+		} else {
+			$this->db->order_by("id", 'DESC');
+		}
 
 		$this->db->limit(1);
 		// just get spesific field what where showing
