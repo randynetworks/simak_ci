@@ -23,12 +23,12 @@ class Master_model extends CI_Model
 		//  default Take All data
 		$query = $this->db->order_by(($table === "mahasiswa") ? 'no_daftar' :'id', 'DESC')->limit($limit, $start)->get($table);
 
-		if ($id != null) {
+		if ($id !== null) {
 			return $this->db->get_where($table, array(($table === "mahasiswa") ? 'no_daftar' : 'id' => $id))->result()[0];
 		}
 
 		// Logic for searching keyword
-		if ($keyword != null) {
+		if ($keyword !== null) {
 			// Default Column value
 			$column = ($table === 'mahasiswa') ? 'nama_lengkap' : '';
 
@@ -37,35 +37,18 @@ class Master_model extends CI_Model
 		}
 
 		// Logic for get Orderby
-		if ($order_by != null) {
+		if ($order_by !== null) {
 			$query = $this->db->order_by($order_by, 'DESC')->limit($limit, $start)->get($table);
 		}
 
 
 		// Logic for get data with order
-		if ($filter != null) {
+		if ($filter !== null) {
 
 			// Looping data
 			foreach ($filter as $key => $value) {
 
-				// kondition when spesific key
-				if (
-					strpos($table, 'kas') !== false ||
-					$key == "tanggal_pembayaran" ||
-					$key == "total_tagihan" ||
-					$key == "id_barang" ||
-					$key == "tanggal" ||
-					$key == "debit" ||
-					$key == "kredit" ||
-					$key == "harga" ||
-					$key == "jumlah"
-				) {
-					// gate order by
-					$this->db->order_by($key, $value);
-				} else {
-					// get like data
-					$this->db->like($key, $value);
-				}
+				$this->db->like($key, $value);
 			}
 			$query = $this->db->limit($limit, $start)->get($table);
 		}

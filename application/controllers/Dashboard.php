@@ -271,7 +271,6 @@ class Dashboard extends CI_Controller
 
 		// ============= SEARCHING LOGIC =================
 		// get data from post keyword form in view for searching
-		$keyword = null;
 		$search = $this->input->post('keyword');
 		if ($search)
 		{
@@ -307,7 +306,13 @@ class Dashboard extends CI_Controller
 		$order_by = $this->input->post('order_by');
 		// Logic if order_by not null
 		if ($order_by !== null && $order_by !== 'Urutkan Berdasarkan') {
-			$query = $this->master_model->get_data($info, null, $order_by);
+			if ($order_by)
+			{
+				$this->session->set_userdata('order', $order_by);
+			} else {
+				$order_by = $this->session->userdata('order');
+			}
+			$query = $this->master_model->get_data($info, null, $order_by, null, null, $config['per_page'], $config['start']);
 		}
 		// ========= END OF ORDER BY LOGIC ===============
 
@@ -318,6 +323,7 @@ class Dashboard extends CI_Controller
 
 		// Declarate filter variable null array
 		$filterData = [];
+
 		$filterColumn = "";
 
 		// Looping all field name
@@ -326,14 +332,15 @@ class Dashboard extends CI_Controller
 			$filterColumn = $this->input->post($column);
 
 			// If $filterColumn not null, add data!
-			if ($filterColumn != null) {
+			if ($filterColumn !== null) {
 				$filterData += array($column => $filterColumn);
 			}
 		}
 
+
 		if (!empty($filterData)) {
 			// query
-			$query = $this->master_model->get_data($info, null, null, null, $filterData);
+			$query = $this->master_model->get_data($info, null, null, null, $filterData, $config['per_page'], $config['start']);
 		}
 
 		// ========== END OF FILTER LOGIC ================
@@ -517,7 +524,7 @@ class Dashboard extends CI_Controller
 	// export excel
 	public function export($table)
 	{
-		ini_set("memory_limit","512M");
+		ini_set("memory_limit",'6000M');
 		$data = $this->master_model->getJustData($table);
 		$spreadsheet = new Spreadsheet;
 		$tables = $this->master_model->getListField($table);
