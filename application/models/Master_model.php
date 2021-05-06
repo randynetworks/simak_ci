@@ -4,6 +4,7 @@ class Master_model extends CI_Model
 {
 	public function __construct()
 	{
+		parent::__construct();
 		$this->load->database();
 	}
 
@@ -21,10 +22,16 @@ class Master_model extends CI_Model
 	public function get_data($table, $id = null, $order_by = null, $keyword = null, $filter = null, $limit = null, $start = null)
 	{
 		//  default Take All data
-		$query = $this->db->order_by(($table === "mahasiswa") ? 'no_daftar' :'id', 'DESC')->limit($limit, $start)->get($table);
+		$rowKey = "id";
+		if ( $table === "mahasiswa") {
+			$rowKey = "no_daftar";
+		} else if  ($table === "prodi"){
+			$rowKey = "id_prodi";
+		}
+		$query = $this->db->order_by($rowKey, 'DESC')->limit($limit, $start)->get($table);
 
 		if ($id !== null) {
-			return $this->db->get_where($table, array(($table === "mahasiswa") ? 'no_daftar' : 'id' => $id))->result()[0];
+			return $this->db->get_where($table, array($rowKey => $id))->result()[0];
 		}
 
 		// Logic for searching keyword

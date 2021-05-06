@@ -60,6 +60,7 @@
 		<div id="collapsePages" class="collapse hide" aria-labelledby="headingPages" data-parent="#accordionSidebar">
 			<div class="bg-white py-2 collapse-inner rounded">
 				<a class="collapse-item" href="<?php echo base_url('dashboard/show/mahasiswa'); ?>">Daftar Mahasiswa</a>
+				<a class="collapse-item" href="<?php echo base_url('dashboard/show/prodi'); ?>">Daftar Prodi</a>
 			</div>
 		</div>
 	</li>
