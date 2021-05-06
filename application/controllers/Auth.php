@@ -134,6 +134,8 @@ class Auth extends CI_Controller
 
 	public function logout()
 	{
+		$this->session->unset_userdata('keyword');
+		$this->session->unset_userdata('order');
 		$this->session->unset_userdata('nomor_induk');
 		$this->session->unset_userdata('role_id');
 		$this->session->set_flashdata(

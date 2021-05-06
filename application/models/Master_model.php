@@ -37,7 +37,13 @@ class Master_model extends CI_Model
 		// Logic for searching keyword
 		if ($keyword !== null) {
 			// Default Column value
-			$column = ($table === 'mahasiswa') ? 'nama_lengkap' : '';
+
+			$column = "";
+			if ($table === "mahasiswa") {
+				$column = "nama_lengkap";
+			} else if ($table === "prodi") {
+				$column = "nama_prodi";
+			}
 
 			// final query for spesific data
 			$query = $this->db->like($column, $keyword)->limit($limit, $start)->get($table);
@@ -149,12 +155,29 @@ class Master_model extends CI_Model
 
 	public function getCountRows($table, $seach = null)
 	{
-		return $seach !== null ?  $this->db->like($table === 'mahasiswa' ? 'nama_lengkap': 'nama', $seach)->get($table)->num_rows() : $this->db->get($table)->num_rows();
+		if ($seach) {
+			$query = "";
+			if ($seach === 'mahasiswa') {
+				return $this->db->like("nama_lenkap", $seach)->get($table)->num_rows();
+			}
+
+			if ($seach === "prodi"){
+				return $this->db->like("nama_prodi", $seach)->get($table)->num_rows();
+			}
+		}
+
+		return $this->db->get($table)->num_rows();
 	}
 
 	public function getJustData($table)
 	{
-		$query = $this->db->order_by(($table === "mahasiswa") ? 'no_daftar' :'id', 'DESC')->get($table);
+		$col = "";
+		if ($table === "mahasiswa") {
+			$col = "no_daftar";
+		} else if ($table === "prodi") {
+			$col = "nama_prodi";
+		}
+		$query = $this->db->order_by($col, 'DESC')->get($table);
 		return $query->result_array();
 	}
 }
