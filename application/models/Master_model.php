@@ -28,6 +28,8 @@ class Master_model extends CI_Model
 			$rowKey = "no_daftar";
 		} else if  ($table === "prodi"){
 			$rowKey = "id_prodi";
+		} else if  ($table === "dosen"){
+			$rowKey = "id_dosen";
 		}
 		$query = $this->db->order_by($rowKey, 'DESC')->limit($limit, $start)->get($table);
 
@@ -44,6 +46,8 @@ class Master_model extends CI_Model
 				$column = "nama_lengkap";
 			} else if ($table === "prodi") {
 				$column = "nama_prodi";
+			} else if ($table === "dosen") {
+				$column = "nama_lengkap";
 			}
 
 			// final query for spesific data
@@ -82,6 +86,8 @@ class Master_model extends CI_Model
 			$col = "no_daftar";
 		} else if ($table === "prodi") {
 			$col = "id_prodi";
+		}else if ($table === "dosen") {
+			$col = "id_dosen";
 		}
 		$this->db->where($col , $id);
 
@@ -107,7 +113,9 @@ class Master_model extends CI_Model
 			$this->db->order_by("no_daftar", 'DESC');
 		} else if ($tabel === "prodi") {
 			$this->db->order_by("id_prodi", 'DESC');
-		} else {
+		} else if ($tabel === "dosen") {
+			$this->db->order_by("id_dosen", 'DESC');
+		}else {
 			$this->db->order_by("id", 'DESC');
 		}
 
@@ -168,7 +176,7 @@ class Master_model extends CI_Model
 	{
 		if ($seach) {
 			$query = "";
-			if ($seach === 'mahasiswa') {
+			if ($seach === 'mahasiswa' || $seach === "dosen") {
 				return $this->db->like("nama_lenkap", $seach)->get($table)->num_rows();
 			}
 
@@ -186,7 +194,9 @@ class Master_model extends CI_Model
 		if ($table === "mahasiswa") {
 			$col = "no_daftar";
 		} else if ($table === "prodi") {
-			$col = "nama_prodi";
+			$col = "id_prodi";
+		}else if ($table === "dosen") {
+			$col = "id_dosen";
 		}
 		$query = $this->db->order_by($col, 'DESC')->get($table);
 		return $query->result_array();

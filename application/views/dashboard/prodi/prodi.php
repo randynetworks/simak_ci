@@ -311,8 +311,7 @@
 									<select required="required" name="nidn" class="custom-select mr-sm-2" id="nidn">
 <!--										NIDN                    -->
 										<option selected value="-">-</option>
-										<option value="3131313131">Pak Paul</option>
-										<option value="1122132121">Ibu Paul</option>
+
 									</select>
 								</div>
 							</div>
