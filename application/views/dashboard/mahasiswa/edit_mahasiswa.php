@@ -331,7 +331,10 @@
 				</div>
 			</div>
 		</div>
-		<button type="submit" class="btn btn-primary mb-5">Update Data</button>
+		<div class="mb-5">
+			<button type="submit" class="btn btn-primary">Update Data</button>
+			<a href="<?= base_url('dashboard/show/mahasiswa') ?>" class="btn btn-secondary">Kembali</a>
+		</div>
 		</form>
 
 	</div>

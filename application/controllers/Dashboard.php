@@ -424,8 +424,13 @@ class Dashboard extends CI_Controller
 		$this->check_user();
 
 		$data = $this->post_content($info);
+		$where = array('id' => $this->input->post('id'));
+		if ($info === "mahasiswa") {
+			$where = array('no_daftar' => $this->input->post('no_daftar'));
+		} else if ($info === "prodi") {
+			$where = array('id_prodi' => $this->input->post('id_prodi'));
+		}
 
-		$where = array( $info === 'mahasiswa' ? 'no_daftar' : 'id' => $this->input->post( $info === 'mahasiswa' ? 'no_daftar' : 'id'));
 		$this->master_model->update_data($where, $data, $info);
 
 		redirect('dashboard/show/' . $info);

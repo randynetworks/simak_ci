@@ -1,5 +1,6 @@
 <?php
 
+
 class Master_model extends CI_Model
 {
 	public function __construct()
@@ -68,8 +69,6 @@ class Master_model extends CI_Model
 		return $query->result_array();
 	}
 
-
-
 	public function set_data($data, $table)
 	{
 		return $this->db->insert($table, $data);
@@ -78,7 +77,13 @@ class Master_model extends CI_Model
 	public function destroy_data($id, $table)
 	{
 		// get id data
-		$this->db->where($table === 'mahasiswa' ? 'no_daftar' : 'id' , $id);
+		$col = "";
+		if ($table === "mahasiswa") {
+			$col = "no_daftar";
+		} else if ($table === "prodi") {
+			$col = "id_prodi";
+		}
+		$this->db->where($col , $id);
 
 		// delete it
 		return $this->db->delete($table);

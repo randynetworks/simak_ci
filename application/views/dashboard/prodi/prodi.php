@@ -239,7 +239,8 @@
 							<div class="form-row">
 								<div class="form-group required col-md-6">
 									<label class='control-label' for="id_prodi">ID Prodi</label>
-									<input required="required" value="<?= $this->master_model->getLastData('id_prodi', 'prodi') + 1?>" name="id_prodi" type="text" class="form-control" id="nama" disabled>
+									<input value="<?= $this->master_model->getLastData('id_prodi', 'prodi') + 1?>" type="text" class="form-control" id="nama" disabled>
+									<input value="<?= $this->master_model->getLastData('id_prodi', 'prodi') + 1?>" name="id_prodi" type="hidden" class="form-control" id="nama" >
 								</div>
 								<div class="form-group required col-md-6">
 									<label class='control-label'>Kode PS</label>
@@ -248,8 +249,8 @@
 							</div>
 							<div class="form-row">
 								<div class="form-group required col-md-6">
-									<label class='control-label' for="id_prodi">Jenjang</label>
-									<select required="required" name="id_prodi" class="custom-select mr-sm-2" id="id_prodi">
+									<label class='control-label' for="jenjang">Jenjang</label>
+									<select required="required" name="jenjang" class="custom-select mr-sm-2" id="jenjang">
 										<option selected value="DD">DD</option>
 										<option value="D3">D3</option>
 										<option value="D4">D4</option>
@@ -283,7 +284,7 @@
 								</div>
 								<div class="form-group required col-md-6">
 									<label class='control-label' for="tgl_akhir_Akred">Tanggal Akhir Akreditasi</label>
-									<input required="required" value="<?= set_value('tgl_akhir_Akred') ?>" data-toggle="datepicker" name="tempat_lahir" type="text" class="form-control" id="tgl_akhir_Akred" placeholder="Tempat Lahir">
+									<input required="required" value="<?= set_value('tgl_akhir_Akred') ?>" data-toggle="datepicker" name="tgl_akhir_Akred" type="text" class="form-control" id="tgl_akhir_Akred" placeholder="Tempat Lahir">
 								</div>
 							</div>
 							<div class="form-row">
@@ -304,10 +305,10 @@
 
 								</div>
 								<div class="form-group required col-md-6">
-									<label class='control-label' for="tgl_akhir_Akred">Ketua Prodi</label>
+									<label class='control-label' for="nidn">Ketua Prodi</label>
 
 <!--									Tambah data dosen yang menjabat jadi ketua prodi               -->
-									<select required="required" name="nilai_akreditasi" class="custom-select mr-sm-2" id="status_prodi">
+									<select required="required" name="nidn" class="custom-select mr-sm-2" id="nidn">
 <!--										NIDN                    -->
 										<option selected value="-">-</option>
 										<option value="3131313131">Pak Paul</option>
