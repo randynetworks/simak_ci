@@ -96,7 +96,7 @@
 							<tr>
 								<td class="align-middle"><?= $item['nidn'] ?></td>
 								<td class="align-middle"><?= $item['nama_lengkap'] ?></td>
-								<td class="align-middle"><?= $item['id_prodi'] ?></td>
+								<td class="align-middle"><?= $this->master_model->getSpesific('prodi', 'id_prodi', $item['id_prodi'])['nama_prodi'] ?></td>
 								<td class="align-middle"><?= $item['status_dosen'] ?></td>
 								<td class="align-middle"><?= $item['status_aktif'] ?></td>
 								<td class="align-middle">
@@ -266,7 +266,7 @@
 							<div class="form-row">
 								<div class="form-group col-md-6">
 									<label class='control-label' for="gelar_awal">Gelar Awal</label>
-									<input value="<?= set_value('gelar_awal') ?>" name="tempat_lahir" type="text" class="form-control" id="gelar_awal" placeholder="Masukan Gelar Awal">
+									<input value="<?= set_value('gelar_awal') ?>" name="gelar_awal" type="text" class="form-control" id="gelar_awal" placeholder="Masukan Gelar Awal">
 								</div>
 								<div class="form-group col-md-6 required">
 									<label for="gelar_akhir" class='control-label'>Gelar Akhir</label>
@@ -306,8 +306,8 @@
 							<hr>
 							<div class="form-row">
 								<div class="form-group col-md-8">
-									<label for="alamat">Alamat</label>
-									<textarea name="alamat" class="form-control" id="alamat" rows="4"><?= set_value('alamat') ?></textarea>
+									<label for="jalan">Alamat</label>
+									<textarea name="jalan" class="form-control" id="jalan" rows="4"><?= set_value('jalan') ?></textarea>
 								</div>
 								<div class="form-row col-md-4">
 									<div class="form-group col-md-6">
@@ -319,8 +319,8 @@
 										<input value="<?= set_value('rw') ?>" name="rw" type="number" class="form-control" id="rw">
 									</div>
 									<div class="form-group col-md-12">
-										<label for="kodepos">Kode Pos</label>
-										<input value="<?= set_value('kodepos') ?>" name="kodepos" type="number" class="form-control" id="kodepos">
+										<label for="kode_pos">Kode Pos</label>
+										<input value="<?= set_value('kode_pos') ?>" name="kode_pos" type="number" class="form-control" id="kode_pos">
 									</div>
 								</div>
 							</div>
@@ -328,12 +328,12 @@
 						<div class="col-md-6">
 							<p><b>Kontak Dosen</b></p>
 							<div class="form-group">
-								<label for="no_hp">No HP</label>
-								<input value="<?= set_value('no_hp') ?>" name="no_hp" type="number" class="form-control" id="no_hp" placeholder="Masukan No HP">
+								<label for="hp">No HP</label>
+								<input value="<?= set_value('hp') ?>" name="hp" type="number" class="form-control" id="hp" placeholder="Masukan No HP">
 							</div>
 							<div class="form-group">
-								<label for="no_telp">No Telp</label>
-								<input value="<?= set_value('no_telp') ?>" name="no_telp" type="number" class="form-control" id="no_telp" placeholder="Masukan No Telp">
+								<label for="telp">No Telp</label>
+								<input value="<?= set_value('telp') ?>" name="telp" type="number" class="form-control" id="telp" placeholder="Masukan No Telp">
 							</div>
 							<div class="form-group">
 								<label for="email">Email</label>
@@ -381,7 +381,7 @@
 							<div class="form-row">
 								<div class="form-group col-md-6">
 									<label for="tmp_masuk">Tanggal Masuk</label>
-									<input required="required" value="<?= set_value('tmp_masuk') ?>" name="tgl_lahir" type="text" class="form-control" data-toggle="datepicker" placeholder="Tanggal Masuk">
+									<input required="required" value="<?= set_value('tmp_masuk') ?>" name="tmp_masuk" type="text" class="form-control" data-toggle="datepicker" placeholder="Tanggal Masuk">
 								</div>
 								<div class="form-group col-md-6">
 									<label for="status_dosen">Status Dosen</label>
@@ -395,11 +395,12 @@
 								<div class="form-group col-md-6">
 									<label for="id_prodi">Prodi</label>
 									<select name="id_prodi" class="custom-select mr-sm-2" id="id_prodi">
-										<option selected value="0">0</option>
-										<option value="1">1</option>
-										<option value="2">2</option>
-										<option value="3">3</option>
-										<option value="4">4</option>
+										<!--MEMANGGIL DATA FIELD TABLE-->
+										<?php
+										$columnVals = $this->master_model->get_data('prodi');
+										foreach ($columnVals as $item) : ?>
+											<option value='<?php echo $item["id_prodi"] ?>'><?php echo $item['nama_prodi'] ?></option>
+										<?php endforeach; ?>
 									</select>
 								</div>
 								<div class="form-group col-md-6">
