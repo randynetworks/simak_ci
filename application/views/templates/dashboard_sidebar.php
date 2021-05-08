@@ -62,6 +62,7 @@
 				<a class="collapse-item" href="<?php echo base_url('dashboard/show/mahasiswa'); ?>">Daftar Mahasiswa</a>
 				<a class="collapse-item" href="<?php echo base_url('dashboard/show/dosen'); ?>">Daftar Dosen</a>
 				<a class="collapse-item" href="<?php echo base_url('dashboard/show/prodi'); ?>">Daftar Prodi</a>
+				<a class="collapse-item" href="<?php echo base_url('dashboard/show/kelas'); ?>">Daftar Kelas</a>
 			</div>
 		</div>
 	</li>
