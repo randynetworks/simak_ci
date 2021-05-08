@@ -17,17 +17,17 @@
 						<div class="row">
 							<div class="col-md-6">
 								<div class="profile-head">
-									<p class="proile-rating mb-3">ID Prodi : <span><?= $item->id_prodi ?></span><br>Kode PS : <span><?= $item->kode_ps ?></p>
+									<p class="proile-rating mb-3">ID Kelas : <span><?= $item->id_kelas ?></span></p>
 									<h3>
-										<?= ucwords($item->nama_prodi) . "<br>(" . ucwords($item->nama_prodi2)  . ")" . " Ter-Akreditasi " . $item->nilai_akreditasi ?>
+										<?= $item->nama_kelas?>
 									</h3>
 									<h6>
-										No. SK, <?= $item->no_sk_Akred ?? 'Belum ada' ?><br>
-										Valid Hingga, <?= $item->tgl_akhir_Akred ?? 'Belum ada' ?>
+										Tahun Akademik, <?= $item->tahun_akademik ?? 'Belum ada' ?><br>
+										Status Kelas, <?= $item->status ?>
 									</h6>
 									<ul class="nav nav-tabs" id="myTab" role="tablist">
 										<li class="nav-item">
-											<a class="nav-link active" id="detail_prodi" data-toggle="tab" href="#detail_prodi" role="tab" aria-controls="detail_prodi" aria-selected="true">Detail</a>
+											<a class="nav-link active" id="info" data-toggle="tab" href="#info" role="tab" aria-controls="info" aria-selected="true">Detail</a>
 										</li>
 									</ul>
 								</div>
@@ -35,38 +35,39 @@
 						</div>
 						<div class="row">
 							<div class="col-md-8">
-								<div class="tab-content detail_prodi" id="myTabContent">
-									<div class="tab-pane fade show active" id="detail_prodi" role="tabpanel" aria-labelledby="detail_prodi">
+								<div class="tab-content info" id="myTabContent">
+									<div class="tab-pane fade show active " id="detail_kelas" role="tabpanel" aria-labelledby="detail_kelas">
+
 										<div class="row mt-3">
 											<div class="col-md-3">
-												<label><b>Jenjang Prodi</b></label>
+												<label><b>Program</b></label>
 											</div>
 											<div class="col-md-3">
-												<p><?= $item->jenjang ?? 'Belum ada' ?></p>
-											</div>
-										</div>
-										<div class="row">
-											<div class="col-md-3">
-												<label><b>Nama Singkatan Prodi</b></label>
-											</div>
-											<div class="col-md-3">
-												<p><?= $item->nama_singkatan_prodi ?? 'Belum Ada' ?></p>
+												<p><?= $item->program ?? 'Belum Ada' ?></p>
 											</div>
 										</div>
 										<div class="row">
 											<div class="col-md-3">
-												<label><b>Ketua Prodi</b></label>
+												<label><b>Kuota Kelas</b></label>
 											</div>
 											<div class="col-md-3">
-												<p><?= $item->nidn ?? 'Belum Ada' ?></p>
+												<p><?= $item->kuota ?? 'Belum Ada' ?></p>
 											</div>
 										</div>
 										<div class="row">
 											<div class="col-md-3">
-												<label><b>Status Prodi</b></label>
+												<label><b>Terisi</b></label>
 											</div>
 											<div class="col-md-3">
-												<p><?= $item->status_prodi ?? 'Belum Ada' ?></p>
+												<p><?= $item->terisi ?? 'Belum Ada' ?></p>
+											</div>
+										</div>
+										<div class="row">
+											<div class="col-md-3">
+												<label><b>Kurikulum</b></label>
+											</div>
+											<div class="col-md-3">
+												<p><?= $item->kurikulum ?? 'Belum Ada' ?></p>
 											</div>
 										</div>
 									</div>
@@ -76,8 +77,8 @@
 					</form>
 				</div>
 
-				<a href="<?= base_url('dashboard/edit/'. $item->id_prodi . '/prodi') ?>" class="btn btn-primary">Ubah</i></a>
-				<a href="<?= base_url('dashboard/show/prodi') ?>" class="btn btn-secondary">Kembali</a>
+				<a href="<?= base_url('dashboard/edit/'. $item->id_kelas . '/kelas') ?>" class="btn btn-primary">Ubah</i></a>
+				<a href="<?= base_url('dashboard/show/kelas') ?>" class="btn btn-secondary">Kembali</a>
 			</div>
 		</div>
 	</div>
