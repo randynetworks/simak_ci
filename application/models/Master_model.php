@@ -90,6 +90,8 @@ class Master_model extends CI_Model
 			$col = "id_prodi";
 		}else if ($table === "dosen") {
 			$col = "id_dosen";
+		}else if ($table === "kelas") {
+			$col = "id_kelas";
 		}
 		$this->db->where($col , $id);
 
