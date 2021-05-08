@@ -237,81 +237,74 @@
 						</div>
 						<div class="col-md-12">
 							<div class="form-row">
-								<div class="form-group required col-md-6">
-									<label class='control-label' for="id_kelas">ID Prodi</label>
+								<div class="form-group col-md-6">
+									<label for="id_kelas">ID Kelas</label>
 									<input value="<?= $this->master_model->getLastData('id_kelas', 'kelas') + 1?>" type="text" class="form-control" id="nama" disabled>
 									<input value="<?= $this->master_model->getLastData('id_kelas', 'kelas') + 1?>" name="id_kelas" type="hidden" class="form-control" id="nama" >
 								</div>
 								<div class="form-group required col-md-6">
-									<label class='control-label'>Kode PS</label>
-									<input required="required" name="kode_ps" type="text" class="form-control" placeholder="Masukan Kode PS">
+									<label class='control-label'>Prodi</label>
+									<select name="id_prodi" class="custom-select mr-sm-2" id="id_prodi">
+										<!--MEMANGGIL DATA FIELD TABLE-->
+										<?php
+										$columnVals = $this->master_model->get_data('prodi');
+										foreach ($columnVals as $item) : ?>
+											<option value='<?php echo $item["id_prodi"] ?>'><?php echo $item['nama_prodi'] ?></option>
+										<?php endforeach; ?>
+									</select>
 								</div>
 							</div>
 							<div class="form-row">
 								<div class="form-group required col-md-6">
-									<label class='control-label' for="jenjang">Jenjang</label>
-									<select required="required" name="jenjang" class="custom-select mr-sm-2" id="jenjang">
-										<option selected value="DD">DD</option>
-										<option value="D3">D3</option>
-										<option value="D4">D4</option>
+									<label class='control-label' for="tahun_akademik">Tahun Akademik</label>
+									<input name="tahun_akademik" placeholder="spt, 2021/2022" type="text" class="form-control" id="tahun_akademik">
+								</div>
+
+								<div class="form-group required col-md-6">
+									<label class='control-label'>Program</label>
+									<select required="required" name="program" class="custom-select mr-sm-2" id="prgram">
+										<option selected value="REGULER">REGULER</option>
+										<option value="WEEKEND">WEEKEND</option>
+										<option value="KARYAWAN">KARYAWAN</option>
+										<option value="TARUNA">TARUNA</option>
+										<option value="EXTENSION REGULER">EXTENSION REGULER</option>
+										<option value="EXTENSION WEEKEND">EXTENSION WEEKEND</option>
+										<option value="EXTENSION KARYAWAN">EXTENSION KARYAWAN</option>
 									</select>
 								</div>
+							</div>
+							<div class="form-row">
 								<div class="form-group required col-md-6">
-									<label class='control-label'>Status Studi</label>
-									<select required="required" name="status_kelas" class="custom-select mr-sm-2" id="status_kelas">
+									<label class='control-label' for="nama_kelas">Nama Kelas</label>
+									<input required="required" name="nama_kelas" type="text" class="form-control" placeholder="Masukan Nama Kelas">
+
+								</div>
+								<div class="form-group required col-md-3">
+									<label class='control-label' for="kuota">Kuota</label>
+									<input required="required" name="kuota" type="number" class="form-control">
+								</div>
+
+								<div class="form-group col-md-3">
+									<label class='control-label' for="terisi">Terisi</label>
+									<input name="terisi" type="number" class="form-control">
+								</div>
+							</div>
+							<div class="form-row">
+								<div class="form-group col-md-6">
+									<label class='control-label' for="status">Status Kelas</label>
+									<select required="required" name="status" class="custom-select mr-sm-2" id="status">
 										<option selected value="AKTIF">AKTIF</option>
 										<option value="TIDAK AKTIF">TIDAK AKTIF</option>
-									</select>
-								</div>
-							</div>
-							<div class="form-row">
-								<div class="form-group required col-md-6">
-									<label class='control-label' for="nama_kelas">Nama Prodi</label>
-									<input required="required" name="nama_kelas" type="text" class="form-control" placeholder="Masukan Nama Prodi">
-
-								</div>
-								<div class="form-group required col-md-6">
-									<label class='control-label' for="nama_kelas2"><i>Name of study Program</i></label>
-									<input required="required" name="nama_kelas2" type="text" class="form-control" placeholder="Masukan Nama Prodi">
-
-								</div>
-							</div>
-							<div class="form-row">
-								<div class="form-group required col-md-6">
-									<label class='control-label' for="no_sk_Akred">No SK Akreditasi</label>
-									<input required="required" name="no_sk_Akred" type="text" class="form-control" placeholder="Masukan Nomor SK Akred">
-
-								</div>
-								<div class="form-group required col-md-6">
-									<label class='control-label' for="tgl_akhir_Akred">Tanggal Akhir Akreditasi</label>
-									<input required="required" value="<?= set_value('tgl_akhir_Akred') ?>" data-toggle="datepicker" name="tgl_akhir_Akred" type="text" class="form-control" id="tgl_akhir_Akred" placeholder="Tempat Lahir">
-								</div>
-							</div>
-							<div class="form-row">
-								<div class="form-group required col-md-6">
-									<label class='control-label' for="nilai_akreditasi">Nilai Akreditasi</label>
-									<select required="required" name="nilai_akreditasi" class="custom-select mr-sm-2" id="status_kelas">
-										<option selected value="-">-</option>
-										<option value="A">A</option>
-										<option value="B">B</option>
 										<option value="C">C</option>
 									</select>
 								</div>
-							</div>
-							<div class="form-row">
 								<div class="form-group required col-md-6">
-									<label class='control-label' for="no_sk_Akred">Nama Singkatan Prodi</label>
-									<input required="required" name="nama_singkatan_kelas" type="text" class="form-control" placeholder="Masukan Nama singkatan Prodi">
+									<label class='control-label' for="tgl_akhir_Akred">Kurikulum</label>
 
-								</div>
-								<div class="form-group required col-md-6">
-									<label class='control-label' for="nidn">Ketua Prodi</label>
-
-<!--									Tambah data dosen yang menjabat jadi ketua kelas               -->
-									<select required="required" name="nidn" class="custom-select mr-sm-2" id="nidn">
-<!--										NIDN                    -->
-										<option selected value="-">-</option>
-
+									<select required="required" name="id_kurikulum" class="custom-select mr-sm-2" id="id_kurikulum">
+										<option selected value="A">A</option>
+										<option value="B">B</option>
+										<option value="C">C</option>
 									</select>
 								</div>
 							</div>
