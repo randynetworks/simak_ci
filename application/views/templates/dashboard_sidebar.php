@@ -63,7 +63,7 @@
 			</div>
 		</div>
 	</li>
-	
+
 	<!-- Nav Item - Pages Collapse Menu -->
 	<li class="nav-item">
 		<a class="nav-link" href="" data-toggle="collapse" data-target="#akademik" aria-expanded="true" aria-controls="akademik">
@@ -80,6 +80,8 @@
 				<h6 class="collapse-header">Penjadwalan</h6>
 				<a class="collapse-item" href="<?php echo base_url('dashboard/show/semester'); ?>">Penjadwalan Semester</a>
 				<a class="collapse-item" href="<?php echo base_url('dashboard/show/kurikulum'); ?>">Penjadwalan Kurikulum</a>
+				<h6 class="collapse-header">Nilai Mahasiswa</h6>
+				<a class="collapse-item" href="<?php echo base_url('dashboard/show/nilai'); ?>">Nilai Akademik Mahasiswa</a>
 			</div>
 		</div>
 	</li>
