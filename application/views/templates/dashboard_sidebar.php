@@ -54,16 +54,32 @@
 	<!-- Nav Item - Pages Collapse Menu -->
 	<li class="nav-item">
 		<a class="nav-link" href="" data-toggle="collapse" data-target="#collapsePages" aria-expanded="true" aria-controls="collapsePages">
-			<i class="fas fa-fw fa-table"></i>
-			<span>Tables</span>
+			<i class="fas fa-fw fa-users"></i>
+			<span>Front Office</span>
 		</a>
 		<div id="collapsePages" class="collapse hide" aria-labelledby="headingPages" data-parent="#accordionSidebar">
 			<div class="bg-white py-2 collapse-inner rounded">
-				<a class="collapse-item" href="<?php echo base_url('dashboard/show/mahasiswa'); ?>">Daftar Biodata MHS</a>
+				<a class="collapse-item" href="<?php echo base_url('dashboard/show/mahasiswa'); ?>">Daftar Info Mahasiswa</a>
+			</div>
+		</div>
+	</li>
+	
+	<!-- Nav Item - Pages Collapse Menu -->
+	<li class="nav-item">
+		<a class="nav-link" href="" data-toggle="collapse" data-target="#akademik" aria-expanded="true" aria-controls="akademik">
+			<i class="fas fa-fw fa-graduation-cap"></i>
+			<span>Akademik</span>
+		</a>
+		<div id="akademik" class="collapse hide" aria-labelledby="headingPages" data-parent="#accordionSidebar">
+			<div class="bg-white py-2 collapse-inner rounded">
+				<h6 class="collapse-header">Informasi</h6>
 				<a class="collapse-item" href="<?php echo base_url('dashboard/show/dosen'); ?>">Daftar Dosen</a>
 				<a class="collapse-item" href="<?php echo base_url('dashboard/show/prodi'); ?>">Daftar Prodi</a>
 				<a class="collapse-item" href="<?php echo base_url('dashboard/show/kelas'); ?>">Daftar Kelas</a>
 				<a class="collapse-item" href="<?php echo base_url('dashboard/show/matakuliah'); ?>">Daftar Mata Kuliah</a>
+				<h6 class="collapse-header">Penjadwalan</h6>
+				<a class="collapse-item" href="<?php echo base_url('dashboard/show/semester'); ?>">Penjadwalan Semester</a>
+				<a class="collapse-item" href="<?php echo base_url('dashboard/show/kurikulum'); ?>">Penjadwalan Kurikulum</a>
 			</div>
 		</div>
 	</li>
