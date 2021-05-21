@@ -115,7 +115,20 @@ class Auth extends CI_Controller
 				'nomor_induk'   => htmlspecialchars($this->input->post('nomor_induk', true)),
 				'image'         => 'default.png',
 				'password'      => password_hash($this->input->post('password1'), PASSWORD_DEFAULT),
-				'role_id'       => 1,
+
+
+				// ===== ===== ====== ===== ===== ====
+				// ===========  ROLE  ================
+				// (0) Tidak Aktif
+				// (1) Administrator
+				// (2) Akademik
+				// (3) Front Office
+				// (4) Mahasiswa
+				// (5) Dosen
+				// Default untuk role_id adalah 4
+				// ===== ===== ====== ===== ===== ====
+
+				'role_id'       => 4,
 				'is_active'     => 0,
 				'date_created'  => time()
 

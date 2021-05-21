@@ -271,23 +271,24 @@ class Dashboard extends CI_Controller
 
 		// ============= SEARCHING LOGIC =================
 		// get data from post keyword form in view for searching
-		$search = $this->input->post('keyword');
-		if ($search)
-		{
-			$this->session->set_userdata('keyword', $search);
-		} else {
-			$search = $this->session->userdata('keyword');
-		}
+		$search = $this->input->get('keyword');
 
 		// =============== PAGINATION ===================
 
 
 		$this->load->library('pagination');
 
-		$config['base_url']  = 'http://localhost/simak_ci/dashboard/show/' . $info;
-		$config['total_rows'] = $this->master_model->getCountRows($info, $search);
-		$config['per_page'] = 10;
+		$cont = $this->master_model->getCountRows($info, $search);
+		$url_base = $search !== null ?
+			'http://localhost/simak_ci/dashboard/show/'. $info .'?keyword='. $search .'+&submit=Cari/'
+			:
+			'http://localhost/simak_ci/dashboard/show/' . $info;
+
+		$config['base_url']  = $url_base;
+		$config['total_rows'] = $cont;
+		$config['per_page'] = ($cont <= 10) ? $cont : 10;
 		$config['start'] = $this->uri->segment(4);
+
 
 		// Initiol
 		$this->pagination->initialize($config);
@@ -356,7 +357,7 @@ class Dashboard extends CI_Controller
 		}
 		if($this->input->post('reset'))
 		{
-			$this->session->unset_userdata('keyword');
+			redirect('dashboard/show/' . $info);
 		}
 
 		// view
@@ -425,15 +426,18 @@ class Dashboard extends CI_Controller
 
 		$data = $this->post_content($info);
 		$where = array('id' => $this->input->post('id'));
+		$id = $this->input->post('id');
 		if ($info === "mahasiswa") {
-			$where = array('no_daftar' => $this->input->post('no_daftar'));
+			$id =$this->input->post('no_daftar');
+			$where = array('no_daftar' => $id);
 		} else if ($info === "prodi") {
-			$where = array('id_prodi' => $this->input->post('id_prodi'));
+			$id = $this->input->post('id_prodi');
+			$where = array('id_prodi' => $id);
 		}
 
 		$this->master_model->update_data($where, $data, $info);
 
-		redirect('dashboard/show/' . $info);
+		redirect('dashboard/show_one/' . $id . '/' . $info);
 	}
 
 
@@ -565,8 +569,10 @@ class Dashboard extends CI_Controller
 
 
 		$writer = new Xlsx($spreadsheet);
-		header('Content-Type: application/vnd.ms-excel');
-		header('Content-Disposition: attachment;filename="REKAP DATA ' .  $table  .'.xlsx"');
+		header("Content-Description: File Transfer");
+		header("Content-Type: application/csv");
+		header('Content-Transfer-Encoding: Binary');
+		header('Content-Disposition: attachment; filename="REKAP DATA ' .  $table  .'.csv"');
 		header('Cache-Control: max-age=0');
 		$writer->save('php://output');
 	}

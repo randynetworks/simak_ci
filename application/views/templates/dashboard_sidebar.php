@@ -59,10 +59,11 @@
 		</a>
 		<div id="collapsePages" class="collapse hide" aria-labelledby="headingPages" data-parent="#accordionSidebar">
 			<div class="bg-white py-2 collapse-inner rounded">
-				<a class="collapse-item" href="<?php echo base_url('dashboard/show/mahasiswa'); ?>">Daftar Mahasiswa</a>
+				<a class="collapse-item" href="<?php echo base_url('dashboard/show/mahasiswa'); ?>">Daftar Biodata MHS</a>
 				<a class="collapse-item" href="<?php echo base_url('dashboard/show/dosen'); ?>">Daftar Dosen</a>
 				<a class="collapse-item" href="<?php echo base_url('dashboard/show/prodi'); ?>">Daftar Prodi</a>
 				<a class="collapse-item" href="<?php echo base_url('dashboard/show/kelas'); ?>">Daftar Kelas</a>
+				<a class="collapse-item" href="<?php echo base_url('dashboard/show/matakuliah'); ?>">Daftar Mata Kuliah</a>
 			</div>
 		</div>
 	</li>

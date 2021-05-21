@@ -1,5 +1,5 @@
 <!-- Main Content -->
-<div id="content">
+<div id="content" xmlns="http://www.w3.org/1999/html">
 	<!-- Begin Page Content -->
 	<div class="container-fluid">
 
@@ -18,11 +18,11 @@
 
 				<!--			SEARCHING        -->
 				<div class="col-md-5">
-					<form action="<?= base_url('dashboard/show/mahasiswa') ?>" method="post">
+					<form action="<?= base_url('dashboard/show/mahasiswa') ?>" method="get">
 						<div class="input-group mb-3">
-							<input name="keyword" type="text"  class="form-control datepicker" placeholder="Cari Berdasarkan Nama">
+							<input name="keyword" type="text"  class="form-control" placeholder="Cari Berdasarkan Nama">
 							<div class="input-group-append">
-								<button type="submit" name="submit" class="btn btn-outline-primary" >Cari</button>
+								<input type="submit" name="submit" class="btn btn-outline-primary" value="Cari" >
 							</div>
 						</div>
 					</form>

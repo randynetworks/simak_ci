@@ -18,7 +18,7 @@
 
 				<!--			SEARCHING        -->
 				<div class="col-md-5">
-					<form action="<?= base_url('dashboard/show/dosen') ?>" method="post">
+					<form action="<?= base_url('dashboard/show/dosen') ?>" method="get">
 						<div class="input-group mb-3">
 							<input name="keyword" type="text"  class="form-control datepicker" placeholder="Cari Berdasarkan Nama">
 							<div class="input-group-append">

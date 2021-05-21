@@ -180,17 +180,15 @@ class Master_model extends CI_Model
 
 	public function getCountRows($table, $seach = null)
 	{
-		if ($seach) {
-			$query = "";
+		if ($seach !== null) {
 			if ($seach === 'mahasiswa' || $seach === "dosen") {
-				return $this->db->like("nama_lenkap", $seach)->get($table)->num_rows();
+				return $this->db->like("nama_lenkap", $seach);
 			}
 
 			if ($seach === "prodi"){
-				return $this->db->like("nama_prodi", $seach)->get($table)->num_rows();
+				return $this->db->like("nama_prodi", $seach);
 			}
 		}
-
 		return $this->db->get($table)->num_rows();
 	}
 
