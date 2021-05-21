@@ -437,6 +437,10 @@ class Dashboard extends CI_Controller
 
 		$this->master_model->update_data($where, $data, $info);
 
+		if ($info === "matakuliah") {
+			redirect('dashboard/show/matakuliah');
+		}
+
 		redirect('dashboard/show_one/' . $id . '/' . $info);
 	}
 

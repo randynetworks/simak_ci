@@ -83,7 +83,7 @@ class Master_model extends CI_Model
 	public function destroy_data($id, $table)
 	{
 		// get id data
-		$col = "";
+		$col = "id";
 		if ($table === "mahasiswa") {
 			$col = "no_daftar";
 		} else if ($table === "prodi") {

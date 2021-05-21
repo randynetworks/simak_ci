@@ -249,11 +249,11 @@
 						<div class="form-row">
 							<div class="form-group required col-md-6">
 								<label class='control-label' for="KodeMatkul">Kode mata Kuliah</label>
-								<input type="text" class="form-control" name="KodeMatkul" id="nama">
+								<input type="number" class="form-control" name="KodeMatkul" id="nama" placeholder="Masukan Kode Matkul">
 							</div>
 							<div class="form-group required col-md-6">
 								<label class='control-label'>SKS</label>
-								<input type="number" class="form-control" name="SKS" id="number">
+								<input type="number" class="form-control" name="SKS" id="number" placeholder="Masukan Jumlah SKS">
 							</div>
 						</div>
 						<div class="form-group required">
@@ -262,7 +262,7 @@
 						</div>
 						<div class="form-group required">
 							<label class='control-label' for="Subjek">Subjek Mata Kuliah</label>
-							<input name="Subjek" placeholder="spt, 2021/2022" type="text" class="form-control" id="Subjek">
+							<input name="Subjek" placeholder="Masukan Subjek Mata Kuliah" type="text" class="form-control" id="Subjek">
 						</div>
 						<div class="form-row">
 							<div class="form-group required col-md-4">
